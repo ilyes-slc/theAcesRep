@@ -1,0 +1,49 @@
+{% extends 'baseFront.html.twig' %} 
+
+
+
+
+{% block content %}
+<br><br><br><br>
+<div class="container">
+        <table id="customers" >
+            <tr>
+                <td>
+                    Date
+                </td>
+                <td>
+                    Description
+                </td>
+                <td colspan="2" align="center" >
+                    Actions
+                </td>
+            </tr>
+            {% if Reclamations is defined %}
+                {% for rec in Reclamations %}
+                <tr>
+                    <td>
+                        {% set date = rec.getDate() %}
+                        {{ date|date('d/m/Y') }}
+                    </td>
+                    <td>
+                        {{ rec.getDescription() }}
+                    </td>
+                    <td>
+                        <a href="{{ path( "supprimer" , {'id':rec.idRec} ) }}"> Supprimer </a>
+                    </td>
+                    <td>
+                        <a href="{{ path( "modifier" , {'id':rec.idRec} ) }}"> Modifier </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="4" align="center">
+                        <a href="ajouter">Ajouter Reclamation</a>
+                    </td>
+                </tr>
+        </table>
+            {% else %}
+                No Reclamations found
+            {% endif %}
+    </div>
+{% endblock %}

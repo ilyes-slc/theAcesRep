@@ -6,13 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Gaming Gear Website{% endblock %}</title>
     {% block css %}
+    <style>
+        fieldset {
+            background-color : white;
+        }
+    </style>
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        #customers tr:nth-child(odd){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+        </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('Front/main.css')}} ">
     <link rel="stylesheet" href="{{asset('https://unicons.iconscout.com/release/v4.0.0/css/line.css')}} ">
     <link rel="stylesheet" href="{{asset('Front/swiper-bundle.min.css')}}">
     {% endblock %}
 </head>
 <body>
-    {% block body %}
+    {% block header %}
     <!-- ========================= Header Section -->
     <header class="header " id="header">
         <div class="logoDiv">
@@ -24,6 +55,7 @@
                 <li class="navItem"><a href="#features" class="navLink">Features</a></li>
                 <li class="navItem"><a href="#newgear" class="navLink">New Arrival</a></li>
                 <li class="navItem"><a href="#test" class="navLink">ProGammers</a></li>
+                <li class="navItem"><a href="afficher" class="navLink">Complaint</a></li>
             </ul>
            <div class="closeIconDiv" id="closeIcon">
             <i class="uil uil-times-circle icon closeIcon"></i>
@@ -47,6 +79,7 @@
             </div>
         </div>
     </header>
+    {% endblock %}
     
 <!-- ==================Main Section------============================== -->
     {% block content %}
@@ -399,7 +432,6 @@
         </div>
     </div>
 </div>
-{% endblock %}
 
 <!-- =====================Test Players ============================== -->
 <div class="playerSection section grid container" id="test">
@@ -456,6 +488,7 @@
 
     </div>
 </div>
+{% endblock %}
 
 <div class="footer">
     {% block footer %}
@@ -510,7 +543,7 @@
     </div>
     {% endblock %}
 </div>
-
+{% block cart %}
 <div class="cart" id="cartDiv" >
     <div class="cartItem">
         <div class="closeIconDiv" id="closeCartIcon">
@@ -551,6 +584,7 @@
         </div>
     </div>
     </div>
+    {% endblock %}
 
     
 </div>
@@ -559,7 +593,8 @@
     <script src="{{asset('Front/swiper-bundle.min.js')}}"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="{{asset('Front/main.js')}}"></script>
-    {% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     {% endblock %}
 </body>
 </html>
