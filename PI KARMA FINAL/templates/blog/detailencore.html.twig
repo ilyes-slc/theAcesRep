@@ -1,0 +1,81 @@
+{% extends 'test/baseFront.html.twig' %}
+
+{% block content %}
+
+
+    <section class="blog_area">
+        <div class="container">
+            <div class="row">
+                {% for a in afficherx %}
+                    {% if a.titre=="Games Test"%}
+                        <div class="col-lg-8">
+                            <div class="blog_left_sidebar">
+                                <article class="row blog_item">
+                                    <div class="col-md-3">
+                                        <div class="blog_info text-right">
+                                            <div class="post_tag">
+
+                                            </div>
+                                            <ul style="color:floralwhite" class="blog_meta list">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="blog_post">
+                                            <img src="{{asset('Blog/img/blog/main-blog/community-bg.jpg')}}" alt="">
+                                            <div class="blog_details">
+                                                <a href="single-blog.html"><h2 style="color:white">{{ a.titre|upper}}</h2></a>
+                                                <p>{{ a.contenu }}</p>
+                                                <p>{{ a.datecreation |date('d-m-Y') }}</p>
+                                                <p>{{ a.imagearticle}}</p>
+                                                <h1>Create new Commentaire</h1>
+
+
+
+
+
+
+                                                {{ form_start(form) }}
+                                                {{ form_widget(form) }}
+                                                <button class="btn">{{ button_label|default('Save') }}</button>
+                                                {{ form_end(form) }}
+
+
+                                                <a href="{{ path('comment_index') }}">back to list</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            </div>
+
+
+                        </div>
+                    {% endif %}
+                {% endfor%}
+            </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%  endblock %}
