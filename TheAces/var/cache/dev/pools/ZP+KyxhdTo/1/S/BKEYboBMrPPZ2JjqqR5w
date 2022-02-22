@@ -1,0 +1,50 @@
+<?php //App%255CEntity%255CClient
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['Doctrine\\ORM\\Mapping\\UniqueConstraint'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\UniqueConstraint')),
+        clone $p['Doctrine\\ORM\\Mapping\\UniqueConstraint'],
+        clone $p['Doctrine\\ORM\\Mapping\\UniqueConstraint'],
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone $p['Doctrine\\ORM\\Mapping\\Entity'],
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'client',
+                'name',
+                'image',
+                'adresse',
+            ],
+            'uniqueConstraints' => [
+                [
+                    $o[1],
+                    $o[2],
+                    $o[3],
+                ],
+            ],
+            'columns' => [
+                1 => [
+                    'name',
+                ],
+                [
+                    'image',
+                ],
+                [
+                    'adresse',
+                ],
+            ],
+            'repositoryClass' => [
+                5 => 'App\\Repository\\ClientRepository',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[4],
+        $o[5],
+    ],
+    []
+); }];
