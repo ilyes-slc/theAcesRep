@@ -7,6 +7,48 @@
     <title>{% block title %}Gaming Gear Website{% endblock %}</title>
     {% block css %}
     <style>
+        .dropbtn {
+          background-color: #4CAF50;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        .dropdown-content a:hover {background-color: #f1f1f1}
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        
+        .dropdown:hover .dropbtn {
+          background-color: #3e8e41;
+        }
+        </style>
+        
+    <style>
         fieldset {
             background-color : white;
         }
@@ -47,15 +89,11 @@
     <!-- ========================= Header Section -->
     <header class="header " id="header">
         <div class="logoDiv">
-           <a href="#home"> <i class="uil uil-pagerduty icon logoIcon"></i></a>
+           <a href="test"> <i class="uil uil-pagerduty icon logoIcon"></i></a>
         </div>
         <div class="navBar" id="navBar">
             <ul class="navLists">
-                <li class="navItem"><a href="#browser" class="navLink">Gears</a></li>
-                <li class="navItem"><a href="#features" class="navLink">Features</a></li>
-                <li class="navItem"><a href="#newgear" class="navLink">New Arrival</a></li>
-                <li class="navItem"><a href="#test" class="navLink">ProGammers</a></li>
-                <li class="navItem"><a href="afficher" class="navLink">Complaint</a></li>
+                <li class="navItem"><a href="test" class="navLink">Home</a></li>
             </ul>
            <div class="closeIconDiv" id="closeIcon">
             <i class="uil uil-times-circle icon closeIcon"></i>
@@ -65,8 +103,11 @@
             <i class="uil uil-ellipsis-h icon"></i>
         </div>
         <div class="accCart">
-            <div class="accDiv">
-                <i class="uil uil-user-circle icon  userIcon"></i>
+            <div class="accDiv dropdown">
+                <i class="uil uil-user-circle icon  userIcon dropbtn"></i>
+                <div class="dropdown-content">
+                    <a href="afficher">My Complaints</a>
+                </div>
                 <div class="plainName">TheAces</div>
              
             </div>

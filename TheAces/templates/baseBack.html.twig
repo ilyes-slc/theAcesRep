@@ -55,55 +55,16 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Layouts
+                                Reclamation
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                                    <a class="nav-link" href="ajouter2">Ajouter</a>
+                                    <a class="nav-link" href="back">Afficher</a>
                                 </nav>
                             </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
+                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -121,7 +82,7 @@
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
+                            <div class="col-xl-12 col-md-10">
                                
                         <div class="card mb-4">
                             <div class="card-header">
@@ -130,28 +91,60 @@
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Description</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for l in Reclamations %}
+                                    <tr>
+                                        <td>
+                                            ID
+                                        </td>
+                                        <td>
+                                            Date
+                                        </td>
+                                        <td>
+                                            Description
+                                        </td>
+                                        <td>
+                                            Etat
+                                        </td>
+                                        <td colspan="2" align="center" >
+                                            Actions
+                                        </td>
+                                    </tr>
+                                    {% if Reclamations is defined %}
+                                        {% for rec in Reclamations %}
                                         <tr>
                                             <td>
-                                                {% set date = l.getDate() %}
+                                                {{ rec.getIdrec() }}
+                                            </td>
+                                            <td>
+                                                {% set date = rec.getDate() %}
                                                 {{ date|date('d/m/Y') }}
                                             </td>
-                                            <td>{{ l.getDescription() }}</td>
-                                            <td><a href="{{ path("supprimer",{"id":l.idRec}) }}">supprimer</a></td>
-                                            <td> <a href="{{ path('modifier',{'id':l.idRec}) }}">Modifier</a></td>
-                                            {% endfor %}
-                                            <a href="{{ path('ajouter') }}">Ajouter</a>
+                                            <td>
+                                                {{ rec.getDescription() }}
+                                            </td>
+                                            <td>
+                                                {{ rec.getEtat() }}
+                                            </td>
+                                            {% if (rec.getEtat() == "Pending") %}
+                                            <td>
+                                                <a href="{{ path( "traiter" , {'idRec':rec.getIdrec() } ) }}"> Traiter </a>
+                                            </td>
+                                            {% endif %}
+                                            {% if (rec.getEtat() == "Treated") %}
+                                            <td>
+                                                <a href="{{ path( "supprimer2" , {'id':rec.idRec} ) }}"> Supprimer </a>
+                                            </td>
+                                            {% endif %}
                                         </tr>
-                                    </tbody>
+                                        {% endfor %}
+                                        <tr>
+                                            <td colspan="4" align="center">
+                                                <a href="ajouter2">Ajouter Reclamation</a>
+                                            </td>
+                                        </tr>
                                 </table>
+                                {% else %}
+                                    No Reclamations found
+                                {% endif %}
                             </div>
                         </div>
                     </div>

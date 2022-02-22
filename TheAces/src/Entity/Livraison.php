@@ -30,6 +30,26 @@ class Livraison
     private $method;
 
     /**
+     * @var \Livreur
+     *
+     * @ORM\ManyToOne(targetEntity="Livreur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cinLivreur", referencedColumnName="cin")
+     * })
+     */
+    private $cinlivreur;
+
+    /**
+     * @var \Produit
+     *
+     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idProd", referencedColumnName="id")
+     * })
+     */
+    private $idprod;
+
+    /**
      * @var \Client
      *
      * @ORM\ManyToOne(targetEntity="Client")
@@ -49,26 +69,6 @@ class Livraison
      */
     private $adresseclient;
 
-    /**
-     * @var \Livreur
-     *
-     * @ORM\ManyToOne(targetEntity="Livreur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cinLivreur", referencedColumnName="cin")
-     * })
-     */
-    private $cinlivreur;
-
-    /**
-     * @var \Element
-     *
-     * @ORM\ManyToOne(targetEntity="Element")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idProd", referencedColumnName="id")
-     * })
-     */
-    private $idprod;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -82,6 +82,30 @@ class Livraison
     public function setMethod(string $method): self
     {
         $this->method = $method;
+
+        return $this;
+    }
+
+    public function getCinlivreur(): ?Livreur
+    {
+        return $this->cinlivreur;
+    }
+
+    public function setCinlivreur(?Livreur $cinlivreur): self
+    {
+        $this->cinlivreur = $cinlivreur;
+
+        return $this;
+    }
+
+    public function getIdprod(): ?Produit
+    {
+        return $this->idprod;
+    }
+
+    public function setIdprod(?Produit $idprod): self
+    {
+        $this->idprod = $idprod;
 
         return $this;
     }
@@ -106,30 +130,6 @@ class Livraison
     public function setAdresseclient(?Client $adresseclient): self
     {
         $this->adresseclient = $adresseclient;
-
-        return $this;
-    }
-
-    public function getCinlivreur(): ?Livreur
-    {
-        return $this->cinlivreur;
-    }
-
-    public function setCinlivreur(?Livreur $cinlivreur): self
-    {
-        $this->cinlivreur = $cinlivreur;
-
-        return $this;
-    }
-
-    public function getIdprod(): ?Element
-    {
-        return $this->idprod;
-    }
-
-    public function setIdprod(?Element $idprod): self
-    {
-        $this->idprod = $idprod;
 
         return $this;
     }

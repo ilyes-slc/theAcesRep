@@ -5,13 +5,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Element
+ * Produit
  *
- * @ORM\Table(name="element")
+ * @ORM\Table(name="produit")
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\ElementRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  */
-class Element
+class Produit
 {
     /**
      * @var int

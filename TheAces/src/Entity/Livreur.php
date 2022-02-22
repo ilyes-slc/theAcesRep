@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Livreur
  *
- * @ORM\Table(name="livreur")
+ * @ORM\Table(name="livreur", uniqueConstraints={@ORM\UniqueConstraint(name="cin", columns={"cin"})}, indexes={@ORM\Index(name="idrating", columns={"idrating"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\LivreurRepository")
  */
@@ -39,16 +39,33 @@ class Livreur
     /**
      * @var int
      *
-     * @ORM\Column(name="age", type="integer", nullable=false)
-     */
-    private $age;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="rating", type="integer", nullable=false)
      */
     private $rating;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_naissance", type="date", nullable=false)
+     */
+    private $dateNaissance;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=30, nullable=false)
+     */
+    private $image;
+
+    /**
+     * @var \Ratings
+     *
+     * @ORM\ManyToOne(targetEntity="Ratings")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idrating", referencedColumnName="id")
+     * })
+     */
+    private $idrating;
 
     public function getCin(): ?int
     {
@@ -79,18 +96,6 @@ class Livreur
         return $this;
     }
 
-    public function getAge(): ?int
-    {
-        return $this->age;
-    }
-
-    public function setAge(int $age): self
-    {
-        $this->age = $age;
-
-        return $this;
-    }
-
     public function getRating(): ?int
     {
         return $this->rating;
@@ -99,6 +104,42 @@ class Livreur
     public function setRating(int $rating): self
     {
         $this->rating = $rating;
+
+        return $this;
+    }
+
+    public function getDateNaissance(): ?\DateTimeInterface
+    {
+        return $this->dateNaissance;
+    }
+
+    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getIdrating(): ?Ratings
+    {
+        return $this->idrating;
+    }
+
+    public function setIdrating(?Ratings $idrating): self
+    {
+        $this->idrating = $idrating;
 
         return $this;
     }

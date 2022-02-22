@@ -37,9 +37,9 @@ class Promotion
     private $pourcentage;
 
     /**
-     * @var \Element
+     * @var \Produit
      *
-     * @ORM\ManyToOne(targetEntity="Element")
+     * @ORM\ManyToOne(targetEntity="Produit")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idProd", referencedColumnName="id")
      * })
@@ -75,12 +75,12 @@ class Promotion
         return $this;
     }
 
-    public function getIdprod(): ?Element
+    public function getIdprod(): ?Produit
     {
         return $this->idprod;
     }
 
-    public function setIdprod(?Element $idprod): self
+    public function setIdprod(?Produit $idprod): self
     {
         $this->idprod = $idprod;
 

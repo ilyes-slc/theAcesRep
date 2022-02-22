@@ -58,6 +58,13 @@ class Tournoi
     private $prix;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=30, nullable=false)
+     */
+    private $image;
+
+    /**
      * @var \Sponsors
      *
      * @ORM\ManyToOne(targetEntity="Sponsors")
@@ -128,6 +135,18 @@ class Tournoi
     public function setPrix(float $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

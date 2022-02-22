@@ -203,5 +203,4 @@ class Client
         return $this->idclient;
     }
 
-
 }
