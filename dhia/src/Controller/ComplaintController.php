@@ -47,8 +47,7 @@ class ComplaintController extends AbstractController
         $Reclamation->setEtat("Pending");
         $formClassroom = $this->createForm(RecFormType::class, $Reclamation);
         $formClassroom->handleRequest($req);
-        if (($formClassroom->isSubmitted()) && ($formClassroom->isValid()))
-        {
+        if (($formClassroom->isSubmitted()) && ($formClassroom->isValid())) {
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($Reclamation);
             $manager->persist($Rep);
@@ -57,7 +56,7 @@ class ComplaintController extends AbstractController
             $Reclamation->setIdclient($Client);
             $manager->flush();
             return $this->redirectToRoute('afficher');
-        } 
+        }
         return $this->render('complaint/index.html.twig', [
             'ajouterForm' => $formClassroom->createView(),
         ]);
@@ -85,8 +84,7 @@ class ComplaintController extends AbstractController
         $Reclamation->setEtat("Pending");
         $formClassroom = $this->createForm(RecFormType::class, $Reclamation);
         $formClassroom->handleRequest($req);
-        if (($formClassroom->isSubmitted()) && ($formClassroom->isValid()))
-        {
+        if (($formClassroom->isSubmitted()) && ($formClassroom->isValid())) {
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($Reclamation);
             $manager->persist($Rep);
@@ -95,7 +93,7 @@ class ComplaintController extends AbstractController
             $Reclamation->setIdclient($Client);
             $manager->flush();
             return $this->redirectToRoute('back');
-        } 
+        }
         return $this->render('complaint/back.html.twig', [
             'ajouterForm' => $formClassroom->createView(),
         ]);
@@ -116,7 +114,7 @@ class ComplaintController extends AbstractController
     /**
      * @Route("/supprimer/{id}", name="supprimer")
      */
-    public function supprimer($id,ReclamationRepository $Rep): Response
+    public function supprimer($id, ReclamationRepository $Rep): Response
     {
         $element = $Rep->find($id);
         $manager = $this->getDoctrine()->getManager();
@@ -128,7 +126,7 @@ class ComplaintController extends AbstractController
     /**
      * @Route("/supprimer2/{id}", name="supprimer2")
      */
-    public function supprimer2($id,ReclamationRepository $Rep): Response
+    public function supprimer2($id, ReclamationRepository $Rep): Response
     {
         $element = $Rep->find($id);
         $manager = $this->getDoctrine()->getManager();
@@ -145,8 +143,7 @@ class ComplaintController extends AbstractController
         $element = $Rep->find($id);
         $form = $this->createForm(RecFormType::class, $element);
         $form->handleRequest($request);
-        if (($form->isSubmitted()) && ($form->isValid()))
-        {
+        if (($form->isSubmitted()) && ($form->isValid())) {
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
             return $this->redirectToRoute('afficher');
@@ -164,8 +161,7 @@ class ComplaintController extends AbstractController
         $element = $Rep->find($id);
         $form = $this->createForm(RecFormType::class, $element);
         $form->handleRequest($request);
-        if (($form->isSubmitted()) && ($form->isValid()))
-        {
+        if (($form->isSubmitted()) && ($form->isValid())) {
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
             return $this->redirectToRoute('back');
@@ -185,14 +181,13 @@ class ComplaintController extends AbstractController
 
         if (!$element) {
             throw $this->createNotFoundException(
-                'No reclamation found for id '.$idRec
+                'No reclamation found for id ' . $idRec
             );
         }
 
         $element->setEtat("Treated");
         $entityManager->flush();
 
-        return $this->redirectToRoute('back'); 
+        return $this->redirectToRoute('back');
     }
-
 }
