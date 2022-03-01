@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="keywords")
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\KeywoardsRepository")
  */
 class Keywords
 {

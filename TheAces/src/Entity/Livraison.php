@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Livraison
  *
- * @ORM\Table(name="livraison", indexes={@ORM\Index(name="fkey6", columns={"idProd"}), @ORM\Index(name="fkey4", columns={"cinLivreur"}), @ORM\Index(name="fkey7", columns={"adresseClient"}), @ORM\Index(name="fkey5", columns={"idClient"})})
+ * @ORM\Table(name="livraison", indexes={@ORM\Index(name="fkey7", columns={"adresseClient"}), @ORM\Index(name="fkey5", columns={"idClient"}), @ORM\Index(name="fkey6", columns={"idProd"}), @ORM\Index(name="fkey4", columns={"cinLivreur"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\LivraisonRepository")
  */
@@ -30,19 +30,9 @@ class Livraison
     private $method;
 
     /**
-     * @var \Livreur
+     * @var \Element
      *
-     * @ORM\ManyToOne(targetEntity="Livreur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cinLivreur", referencedColumnName="cin")
-     * })
-     */
-    private $cinlivreur;
-
-    /**
-     * @var \Produit
-     *
-     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\ManyToOne(targetEntity="Element")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idProd", referencedColumnName="id")
      * })
@@ -69,6 +59,16 @@ class Livraison
      */
     private $adresseclient;
 
+    /**
+     * @var \Livreur
+     *
+     * @ORM\ManyToOne(targetEntity="Livreur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cinLivreur", referencedColumnName="cin")
+     * })
+     */
+    private $cinlivreur;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,24 +86,12 @@ class Livraison
         return $this;
     }
 
-    public function getCinlivreur(): ?Livreur
-    {
-        return $this->cinlivreur;
-    }
-
-    public function setCinlivreur(?Livreur $cinlivreur): self
-    {
-        $this->cinlivreur = $cinlivreur;
-
-        return $this;
-    }
-
-    public function getIdprod(): ?Produit
+    public function getIdprod(): ?Element
     {
         return $this->idprod;
     }
 
-    public function setIdprod(?Produit $idprod): self
+    public function setIdprod(?Element $idprod): self
     {
         $this->idprod = $idprod;
 
@@ -130,6 +118,18 @@ class Livraison
     public function setAdresseclient(?Client $adresseclient): self
     {
         $this->adresseclient = $adresseclient;
+
+        return $this;
+    }
+
+    public function getCinlivreur(): ?Livreur
+    {
+        return $this->cinlivreur;
+    }
+
+    public function setCinlivreur(?Livreur $cinlivreur): self
+    {
+        $this->cinlivreur = $cinlivreur;
 
         return $this;
     }

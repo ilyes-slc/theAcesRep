@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reclamation
  *
- * @ORM\Table(name="reclamation", indexes={@ORM\Index(name="fkey2", columns={"idRep"}), @ORM\Index(name="fkey1", columns={"idClient"})})
+ * @ORM\Table(name="reclamation", indexes={@ORM\Index(name="fkey1", columns={"idClient"}), @ORM\Index(name="fkey2", columns={"idRep"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ReclamationRepository")
  */
@@ -44,16 +44,6 @@ class Reclamation
     private $etat;
 
     /**
-     * @var \Client
-     *
-     * @ORM\ManyToOne(targetEntity="Client")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idClient", referencedColumnName="idClient")
-     * })
-     */
-    private $idclient;
-
-    /**
      * @var \Reparation
      *
      * @ORM\ManyToOne(targetEntity="Reparation")
@@ -62,6 +52,16 @@ class Reclamation
      * })
      */
     private $idrep;
+
+    /**
+     * @var \Client
+     *
+     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idClient", referencedColumnName="idClient")
+     * })
+     */
+    private $idclient;
 
     public function getIdrec(): ?int
     {
@@ -104,18 +104,6 @@ class Reclamation
         return $this;
     }
 
-    public function getIdclient(): ?Client
-    {
-        return $this->idclient;
-    }
-
-    public function setIdclient(?Client $idclient): self
-    {
-        $this->idclient = $idclient;
-
-        return $this;
-    }
-
     public function getIdrep(): ?Reparation
     {
         return $this->idrep;
@@ -128,7 +116,17 @@ class Reclamation
         return $this;
     }
 
-    
+    public function getIdclient(): ?Client
+    {
+        return $this->idclient;
+    }
+
+    public function setIdclient(?Client $idclient): self
+    {
+        $this->idclient = $idclient;
+
+        return $this;
+    }
 
 
 }

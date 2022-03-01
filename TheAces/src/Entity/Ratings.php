@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ratings
  *
- * @ORM\Table(name="ratings", indexes={@ORM\Index(name="fkey44", columns={"imgClient"}), @ORM\Index(name="fkey46", columns={"idar"}), @ORM\Index(name="fkey77", columns={"idcli"}), @ORM\Index(name="fkey33", columns={"nomClient"})})
+ * @ORM\Table(name="ratings", indexes={@ORM\Index(name="fkey77", columns={"idcli"}), @ORM\Index(name="fkey33", columns={"nomClient"}), @ORM\Index(name="fkey44", columns={"imgClient"}), @ORM\Index(name="fkey46", columns={"idar"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\RatingsRepository")
  */
@@ -28,16 +28,6 @@ class Ratings
      * @ORM\Column(name="date", type="date", nullable=false)
      */
     private $date;
-
-    /**
-     * @var \Client
-     *
-     * @ORM\ManyToOne(targetEntity="Client")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="nomClient", referencedColumnName="name")
-     * })
-     */
-    private $nomclient;
 
     /**
      * @var \Article
@@ -69,6 +59,16 @@ class Ratings
      */
     private $idcli;
 
+    /**
+     * @var \Client
+     *
+     * @ORM\ManyToOne(targetEntity="Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="nomClient", referencedColumnName="name")
+     * })
+     */
+    private $nomclient;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,18 +82,6 @@ class Ratings
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getNomclient(): ?Client
-    {
-        return $this->nomclient;
-    }
-
-    public function setNomclient(?Client $nomclient): self
-    {
-        $this->nomclient = $nomclient;
 
         return $this;
     }
@@ -130,6 +118,18 @@ class Ratings
     public function setIdcli(?Client $idcli): self
     {
         $this->idcli = $idcli;
+
+        return $this;
+    }
+
+    public function getNomclient(): ?Client
+    {
+        return $this->nomclient;
+    }
+
+    public function setNomclient(?Client $nomclient): self
+    {
+        $this->nomclient = $nomclient;
 
         return $this;
     }

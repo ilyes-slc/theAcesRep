@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="admin")
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\AdminRepository")
  */
 class Admin
 {

@@ -7,9 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Client
  *
- * @ORM\Table(name="client", uniqueConstraints={@ORM\UniqueConstraint(name="name", columns={"name"}), @ORM\UniqueConstraint(name="image", columns={"image"}), @ORM\UniqueConstraint(name="adresse", columns={"adresse"})})
+ * @ORM\Table(name="client", uniqueConstraints={@ORM\UniqueConstraint(name="adresse", columns={"adresse"}), @ORM\UniqueConstraint(name="name", columns={"name"}), @ORM\UniqueConstraint(name="image", columns={"image"})})
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\ClientRepository")
  */
 class Client
 {
@@ -198,9 +197,5 @@ class Client
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->idclient;
-    }
 
 }

@@ -1,0 +1,86 @@
+
+{% extends 'baseBack.html.twig' %}
+
+
+
+{% block title %}Ajouter produit {% endblock %}
+
+
+
+{% block body %}
+    {{ form_start(Element,{'attr': {'novalidate': 'novalidate'}} ) }}
+    <div style="margin-left: 20%" class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <fieldset >
+                <h4>Type</h4>
+                {{ form_errors(Element.type,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Element.type,{'attr': {'class': 'form-control' , 'placeholder' : 'type'}}) }}
+            </fieldset>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <fieldset >
+                <h4>ref</h4>
+                {{ form_errors(Element.ref,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Element.ref,{'attr': {'class': 'form-control' , 'placeholder' : 'ref'}}) }}
+            </fieldset>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <fieldset >
+                <h4>nom</h4>
+                {{ form_errors(Element.nom,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Element.nom,{'attr': {'class': 'form-control' , 'placeholder' : 'nom'}}) }}
+            </fieldset>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <fieldset >
+                <h4>prix</h4>
+                {{ form_errors(Element.prix,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Element.prix,{'attr': {'class': 'form-control' , 'placeholder' : 'prix'}}) }}
+            </fieldset>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <fieldset >
+                <h4>description</h4>
+                {{ form_errors(Element.description,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Element.description,{'attr': {'class': 'form-control' , 'placeholder' : 'description'}}) }}
+            </fieldset>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <fieldset >
+                <h4>Etat</h4>
+                {{ form_errors(Element.etat,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Element.etat,{'attr': {'class': 'form-control' , 'placeholder' : 'etat'}}) }}
+            </fieldset>
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <fieldset >
+                <h4>quantite</h4>
+                {{ form_errors(Element.quantite,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Element.quantite,{'attr': {'class': 'form-control' , 'placeholder' : 'quantite'}}) }}
+            </fieldset>
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-8 " >
+            <fieldset >
+                <h4 class="">quantite</h4>
+                {{ form_errors(Element.image,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Element.image,{'attr': {'class': 'form-control' , 'placeholder' : 'image'}}) }}
+
+            </fieldset>
+        </div>
+        <div class="col-lg-12">
+            <fieldset>
+                <button class="btn btn-success" type="submit" id="form-submit" class="filled-button">{{ button_label|default('Modifier') }}</button>
+            </fieldset>
+        </div>
+
+    </div>
+    {{ form_end(Element) }}
+
+{% endblock %}
+
+
+
+
+

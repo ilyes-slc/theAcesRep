@@ -19,40 +19,32 @@ class ReclamationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reclamation::class);
     }
 
-    /**
-     * @return Reclamation[] Returns an array of Reclamation objects
-     */
-    public function findAllRecs()
+    // /**
+    //  * @return Reclamation[] Returns an array of Reclamation objects
+    //  */
+    /*
+    public function findByExampleField($value)
     {
         return $this->createQueryBuilder('r')
+            ->andWhere('r.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(10)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
+    */
 
-
-    /**
-     * @return Product[]
-     */
-    public function findAllRecs2(): array
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT r
-            FROM App\Entity\Reclamation r'
-        );
-
-        // returns an array of Product objects
-        return $query->getResult();
-    }
-
-
+    /*
     public function findOneBySomeField($value): ?Reclamation
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getOneOrNullResult()
+        ;
     }
+    */
 }

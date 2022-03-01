@@ -7,9 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commentaire
  *
- * @ORM\Table(name="commentaire", indexes={@ORM\Index(name="fkey45", columns={"idarticle"}), @ORM\Index(name="fkey47", columns={"imgCl"}), @ORM\Index(name="fkey48", columns={"nomcl"}), @ORM\Index(name="fkey60", columns={"idCl"})})
+ * @ORM\Table(name="commentaire", indexes={@ORM\Index(name="fkey48", columns={"nomcl"}), @ORM\Index(name="fkey60", columns={"idCl"}), @ORM\Index(name="fkey45", columns={"idarticle"}), @ORM\Index(name="fkey47", columns={"imgCl"})})
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\CommentaireRepository")
  */
 class Commentaire
 {
@@ -35,16 +34,6 @@ class Commentaire
      * @ORM\Column(name="date_commentaire", type="datetime", nullable=false)
      */
     private $dateCommentaire;
-
-    /**
-     * @var \Article
-     *
-     * @ORM\ManyToOne(targetEntity="Article")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idarticle", referencedColumnName="idarticle")
-     * })
-     */
-    private $idarticle;
 
     /**
      * @var \Client
@@ -76,6 +65,16 @@ class Commentaire
      */
     private $idcl;
 
+    /**
+     * @var \Article
+     *
+     * @ORM\ManyToOne(targetEntity="Article")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idarticle", referencedColumnName="idarticle")
+     * })
+     */
+    private $idarticle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -101,18 +100,6 @@ class Commentaire
     public function setDateCommentaire(\DateTimeInterface $dateCommentaire): self
     {
         $this->dateCommentaire = $dateCommentaire;
-
-        return $this;
-    }
-
-    public function getIdarticle(): ?Article
-    {
-        return $this->idarticle;
-    }
-
-    public function setIdarticle(?Article $idarticle): self
-    {
-        $this->idarticle = $idarticle;
 
         return $this;
     }
@@ -149,6 +136,18 @@ class Commentaire
     public function setIdcl(?Client $idcl): self
     {
         $this->idcl = $idcl;
+
+        return $this;
+    }
+
+    public function getIdarticle(): ?Article
+    {
+        return $this->idarticle;
+    }
+
+    public function setIdarticle(?Article $idarticle): self
+    {
+        $this->idarticle = $idarticle;
 
         return $this;
     }

@@ -1,0 +1,75 @@
+{% extends 'baseBack.html.twig' %}
+
+
+      {% block title %} Afficher produit {% endblock %}
+
+
+
+            {% block body %}
+
+
+                <div class="card-body">
+                    <table id="datatablesSimple">
+                        <thead>
+                        <tr>
+                            <th>id d'element</th>
+                            <th>type d'element</th>
+                            <th>nom d'element</th>
+                            <th>prix d'element</th>
+                            <th>description d'element</th>
+                            <th>image d'element</th>
+                            <th>Etat</th>
+                            <th>quntite d'element</th>
+                            <th> promotion </th>
+                            <th>Supprimer/Modifer</th>
+                        </tr>
+
+                        <tbody>
+
+                        {% for element in element %}
+                            <tr>
+                                <td>{{ element.id }}</td>
+                                <td>{{ element.type }}</td>
+                                <td>{{ element.nom }}</td>
+                                <td>{{ element.prix }}</td>
+                                <td>{{ element.description }}</td>
+
+                                <td><img src={{ asset('uploads/images/'~element.image) }} height="100px" width="250px">
+                                </td>
+
+                                <td> {% if element.etat==1 %}
+                                        disponible
+                                    {% else %}
+                                     non disponible
+                                    {% endif %}
+
+                                </td>
+                                <td>{{ element.quantite }}</td>
+                                <td>  <table id="datatablesSimple">
+                                        <thead>
+                                        <tr>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for promotion in element.promotions %}
+                                                <tr>
+                                                    <td>{{ promotion.pourcentage }} |</td>
+                                                </tr>
+                                            {% endfor %}
+
+                                    </table> </td>
+                                <td><a href="{{ path('e_modifier',{'id':element.id}) }}"> modifier </a>
+                                   <br>
+                                    <a href="{{ path('e_supprimer',{'id':element.id}) }}"> Supprimer </a> </td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <ul class="pagination">
+                        {{ knp_pagination_render(element) }}
+                    </ul>
+                </div>
+            {% endblock %}
+

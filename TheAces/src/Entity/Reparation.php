@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="reparation")
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\ReparationRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ReclamationRepository")
  */
 class Reparation
 {
@@ -44,11 +44,6 @@ class Reparation
         $this->delai = $delai;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->idrep;
     }
 
 
