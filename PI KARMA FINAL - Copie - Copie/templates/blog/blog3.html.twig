@@ -1,0 +1,96 @@
+{% extends 'test/baseFront.html.twig' %}
+
+{% block content %}
+    <style>
+        .search input[type=text]{
+            width:300px;
+            height:25px;
+            border-radius:25px;
+            border: none;
+        }
+    .search{
+    float:right;
+    margin:7px;
+    }
+
+    .search button{
+    background-color: #0074D9;
+    color: #f2f2f2;
+    float: right;
+    padding: 5px 10px;
+    margin-right: 16px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    }
+
+
+
+
+
+
+        .img        {
+            cursor: url("https://cur.cursors-4u.net/mechanics/mec-5/mec467.cur"), auto;
+
+
+            flex-grow: 1;
+            box-sizing: border-box;
+            padding: 10px 2px;
+
+        &:nth-child(odd) {
+             background: #eee;
+         }
+        &:hover {
+             opacity: 0.25
+         }
+        }
+
+    </style>
+
+
+
+    <section class ="img" class="blog_area">
+    <div class="container">
+    <div class="row">
+        {% for a in articlegames %}
+
+    <div class="col-lg-8">
+    <div class="blog_left_sidebar">
+    <article class="row blog_item">
+        <div class="col-md-3">
+            <div class="blog_info text-right">
+                <div class="post_tag">
+
+                </div>
+                <ul style="color:floralwhite" class="blog_meta list">
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="blog_post">
+                <img class="img" src={{asset('uploads/images/'~a.imagearticle)}}>
+                <div class="blog_details">
+                    <a href="single-blog.html"><h2 style="color:white">{{ a.titre|upper}}</h2></a>
+                    <p>{{ a.contenu }}</p>
+                    <p>{{ a.datecreation  }}</p>
+
+                    <a href="/comment/new1/{{a.id}}" >View More</a>
+                </div>
+            </div>
+        </div>
+
+    </article>
+    </div>
+
+
+    </div>
+
+        {% endfor%}
+    </div>
+
+
+    </section>
+
+
+{%  endblock %}

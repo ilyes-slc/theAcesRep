@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gaming Gear Website{% endblock %}</title>
+    {% block stylesheet %}
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+              rel="stylesheet">
+    {% endblock %}
+    {% block css %}
+        <link rel="stylesheet" href="{{asset('Front/main.css')}} ">
+        <link rel="stylesheet" href="{{asset('https://unicons.iconscout.com/release/v4.0.0/css/line.css')}} ">
+        <link rel="stylesheet" href="{{asset('Front/swiper-bundle.min.css')}}">
+        <link rel="stylesheet" href="{{asset('Front/css/bootstrap.min.css')}} " type="text/css">
+        <link rel="stylesheet" href="{{asset('Front/css/font-awesome.min.css')}}" type="text/css">
+        <link rel="stylesheet" href="{{asset('Front/css/elegant-icons.css)')}}" type="text/css">
+        <link rel="stylesheet" href="{{asset ('Front/css/plyr.css')}}" type="text/css">
+        <link rel="stylesheet" href="{{asset('Front/css/nice-select.css')}}" type="text/css">
+        <link rel="stylesheet" href="{{asset('Front/css/owl.carousel.min.css')}}" type="text/css">
+        <link rel="stylesheet" href="{{asset('Front/css/slicknav.min.css')}}" type="text/css">
+        <link rel="stylesheet" href="{{asset('Front/css/style.css')}}" type="text/css"
+    {% endblock %}
+</head>
+<br>
+<body>
+{% block body %}
+    <!-- ========================= Header Section -->
+    <header class="header " id="header">
+        <div class="logoDiv">
+            <a href="#home"> <i class="uil uil-pagerduty icon logoIcon"></i></a>
+        </div>
+        <div class="navBar" id="navBar">
+            <ul class="navLists">
+                <li class="navItem"><a href="#browser" class="navLink">Gears</a></li>
+                <li class="navItem"><a href="#features" class="navLink">Features</a></li>
+                <li class="navItem"><a href="#newgear" class="navLink">New Arrival</a></li>
+                <li class="navItem"><a href="#test" class="navLink">ProGammers</a></li>
+                <li class="navItem"><a href="blog" class="navLink">Our Blog</a></li>
+            </ul>
+            <div class="closeIconDiv" id="closeIcon">
+                <i class="uil uil-times-circle icon closeIcon"></i>
+            </div>
+        </div>
+        <div class="toggleIconDiv" id="toggleIcon">
+            <i class="uil uil-ellipsis-h icon"></i>
+        </div>
+        <div class="accCart">
+            <div class="accDiv">
+                <i class="uil uil-user-circle icon  userIcon"></i>
+                <div class="plainName">TheAces</div>
+
+            </div>
+            <div class="cartDiv" id="cartIcon">
+                <i class="uil uil-shopping-bag icon" ></i>
+            </div>
+
+            <div class="themeIconDiv" id="themeIconDiv">
+                <i class="uil uil-sun icon"></i>
+            </div>
+        </div>
+    </header>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+{% block content %}
+    <div class="blog__details__comment">
+
+        <h4>3 Comments</h4>
+        <div class="blog__details__comment__item">
+            <div class="blog__details__comment__item__pic">
+                <img src="{{asset('Front/Images/comment-1.png')}}" alt="">
+            </div>
+            <div class="blog__details__comment__item__text">
+                <span>Sep 08, 2020</span>
+                <h5>John Smith</h5>
+                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                    adipisci velit, sed quia non numquam eius modi</p>
+                <a href="#">Like</a>
+                <a href="#">Reply</a>
+            </div>
+        </div>
+        <div class="blog__details__comment__item blog__details__comment__item--reply">
+            <div class="blog__details__comment__item__pic">
+                <img src="{{asset('Front/Images/comment-2.png')}}" alt="">
+            </div>
+            <div class="blog__details__comment__item__text">
+                <span>Sep 08, 2020</span>
+                <h5>Elizabeth Perry</h5>
+                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                    adipisci velit, sed quia non numquam eius modi</p>
+                <a href="#">Like</a>
+                <a href="#">Reply</a>
+            </div>
+        </div>
+        <div class="blog__details__comment__item">
+            <div class="blog__details__comment__item__pic">
+                <img src="{{asset('Front/Images/comment-3.png')}}" alt="">
+            </div>
+            <div class="blog__details__comment__item__text">
+                <span>Sep 08, 2020</span>
+                <h5>Adrian Coleman</h5>
+                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                    adipisci velit, sed quia non numquam eius modi</p>
+                <a href="#">Like</a>
+                <table border="2">
+                    <tr>
+
+                        <th> contenu </th>
+
+
+                    </tr>
+
+                    {% for c in Commentaire %}
+                        <tr>
+
+                            <td> {{ c.contenu }} </td>
+                            <td> <a href="{{path('supprimer',{'id':c.id})}}"> Supprimer</td>
+                            <td> <a href="{{path('modifier',{'id':c.id})}}"> modifier</td>
+                        </tr>
+
+                        <tr>
+
+                        </tr>
+
+                    {% endfor%}
+            </div>
+        </div>
+    </div>
+    <div class="blog__details__form">
+        <h4>Leave A Comment</h4>
+        <form action="#">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <input type="text" id="Commentaire" placeholder="Name">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <input type="text" placeholder="Email">
+                </div>
+                <div class="col-lg-12">
+                    <textarea placeholder="Message"></textarea>
+                    <button type="submit" class="site-btn">Send Message</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+{% endblock  %}
+
+
+
+{% block js %}
+    <script src="{{asset('Front/swiper-bundle.min.js')}}"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="{{asset('Front/main.js')}}"></script>
+
+{% endblock %}
+{% endblock %}
+</body>
+</html>

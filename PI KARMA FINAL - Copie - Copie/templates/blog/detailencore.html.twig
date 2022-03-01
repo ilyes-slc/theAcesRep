@@ -1,0 +1,257 @@
+{% extends 'test/baseFront.html.twig' %}
+
+{% block content %}
+    <style>
+        label{
+            color:white;
+        }
+ button {
+  min-width: 20px;
+  min-height: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-align:center;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 400;
+  color: #313133;
+  background: #4FD1C5;
+background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+
+
+.button:hover, .button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+button:hover::before, button:focus::before {
+  opacity: 1;
+}
+
+button::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 6px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+button:hover::after, button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 100px;
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+    </style>
+
+
+    <section class="blog_area">
+        <div class="container">
+            <div class="row">
+                {% for i in range(0,20) %}
+                    {% if afficherx.id==i %}
+                        <div class="col-lg-8">
+                            <div class="blog_left_sidebar">
+                                <article class="row blog_item">
+                                    <div class="col-md-3">
+                                        <div class="blog_info text-right">
+                                            <div class="post_tag">
+
+                                            </div>
+                                            <ul style="color:floralwhite" class="blog_meta list">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="blog_post">
+                                            <img src={{asset('uploads/images/'~afficherx.imagearticle)}}>
+                                            <div class="blog_details">
+                                                <a href="single-blog.html"><h2 style="color:white">{{ afficherx.titre|upper}}</h2></a>
+                                                <p>{{ afficherx.contenu }}</p>
+                                                <p>{{ afficherx.datecreation}}</p>
+
+
+
+
+
+ <section >
+    <div class="container">
+
+
+
+        <br>
+
+            <h3 style="color:white">Nombre de commentaires</h3>
+            <table border="2"  class="container">
+                <tr>
+
+
+                    <th style="color:antiquewhite" cols="30" rows="6"> Contenu</th>
+                    <br>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% if ListC is defined %}
+            {% for commentaire in ListC %}
+
+
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+
+                                </div>
+                                <ul style="color:floralwhite" class="blog_meta list">
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <tr>
+
+                                <td style="color:white">{{ commentaire.contenu }}</td>
+                                <td>
+
+                         <a style="color:white" href="{{ path('comment_edit', {'id': commentaire.id}) }}">edit</a>
+                      {#    <a style="color:white" href="{{ path('comment/supprimercomm4/{{ commentaire.id }}', {'id': commentaire.id}) }}">delete</a>#}
+
+
+                                </td>
+
+                            </tr>
+
+
+                        </div>
+                        {% endfor%}
+                {% endif%}
+                </tbody>
+            </table>
+<br>
+        <br>
+        <br>
+        <div class="see">
+
+
+         <h2 style="color:white">Leave a reply</h2>
+
+
+
+
+
+
+                                                {{ form_start(form ,{'attr': {'novalidate': 'novalidate'}} )}}
+
+                                                <textarea class="form-control" rows="4"{{ form_widget(form.contenu) }}></textarea>
+                                                <br>
+                                                <button   href="{{ path('comment_new1', {'id': afficherx.id})}}" style ="color:white" class="btn">{{ button_label|default('Save') }}</button>
+                                                {{ form_end(form) }}
+
+
+                                               </div>
+
+
+
+                    </article>
+
+
+                </div>
+
+
+                </div>
+
+
+        </div>
+
+
+
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            </div>
+
+
+                        </div>
+                    {% endif %}
+                {% endfor%}
+            </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%  endblock %}

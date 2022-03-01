@@ -1,0 +1,71 @@
+{% extends 'test/baseFront.html.twig' %}
+
+{% block content %}
+    <style>
+        .img        {
+            cursor: url("https://ani.cursors-4u.net/cursors/cur-13/cur1159.png"), auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            box-sizing: border-box;
+            padding: 10px 2px;
+
+        &:nth-child(odd) {
+             background: #eee;
+         }
+        &:hover {
+             opacity: 0.25
+         }
+        }
+    </style>
+
+    <section class ="img" class="blog_area">
+        <div class="container">
+            <div class="row">
+                {% for a in articleproduct %}
+
+                        <div class="col-lg-8">
+                            <div class="blog_left_sidebar">
+                                <article class="row blog_item">
+                                    <div class="col-md-3">
+                                        <div class="blog_info text-right">
+                                            <div class="post_tag">
+
+                                            </div>
+                                            <ul style="color:floralwhite" class="blog_meta list">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="blog_post">
+                                            <img class="img" src={{asset('uploads/images/'~a.imagearticle)}}>
+                                            <div class="blog_details">
+                                                <a href="single-blog.html"><h2 style="color:white">{{ a.titre|upper}}</h2></a>
+                                                <p>{{ a.contenu }}</p>
+                                                <p>{{ a.dateCreation  }}</p>
+
+                                                <a href="/comment/new1/{{a.id}}" class="blog_btn">View More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </article>
+                            </div>
+
+
+                        </div>
+
+                {% endfor%}
+            </div>
+
+
+    </section>
+
+
+{%  endblock %}
