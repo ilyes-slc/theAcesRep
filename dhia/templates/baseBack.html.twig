@@ -8,6 +8,98 @@
         <meta name="author" content="" />
         <title>{% block title %}Dashboard - SB Admin{% endblock %}</title>
         {% block stylesheet %}
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+$base-spacing-unit: 24px;
+$half-spacing-unit: $base-spacing-unit / 2;
+
+$color-alpha: #1772FF;
+$color-form-highlight: #EEEEEE;
+
+*, *:before, *:after {
+	box-sizing:border-box;
+}
+
+body {
+	padding:$base-spacing-unit;
+	font-family:'Source Sans Pro', sans-serif;
+	margin:0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin:0;
+}
+
+.container {
+	max-width: 1000px;
+	margin-right:auto;
+	margin-left:auto;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	min-height:100vh;
+}
+
+.table {
+	width:100%;
+	border:1px solid $color-form-highlight;
+}
+
+.table-header {
+	display:flex;
+	width:100%;
+	background:#000;
+	padding:($half-spacing-unit * 1.5) 0;
+}
+
+.table-row {
+	display:flex;
+	width:100%;
+	padding:($half-spacing-unit * 1.5) 0;
+	
+	&:nth-of-type(odd) {
+		background:$color-form-highlight;
+	}
+}
+
+.table-data, .header__item {
+	flex: 1 1 20%;
+	text-align:center;
+}
+
+.header__item {
+	text-transform:uppercase;
+}
+
+.filter__link {
+	color:white;
+	text-decoration: none;
+	position:relative;
+	display:inline-block;
+	padding-left:$base-spacing-unit;
+	padding-right:$base-spacing-unit;
+	
+	&::after {
+		content:'';
+		position:absolute;
+		right:-($half-spacing-unit * 1.5);
+		color:white;
+		font-size:$half-spacing-unit;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+	
+	&.desc::after {
+		content: '(desc)';
+	}
+
+	&.asc::after {
+		content: '(asc)';
+	}
+	
+}
+        </style>
         <link href="{{asset('https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css')}})" rel="stylesheet" />
         <link href="{{asset('Back/css/styles.css')}}" rel="stylesheet" />
         {% endblock %}
@@ -19,7 +111,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+            <a class="navbar-brand ps-3" href="back">TheAces</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -48,7 +140,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="back">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -73,82 +165,68 @@
                     </div>
                 </nav>
             </div>
-            {% block content %}
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                        <div class="row">
-                            <div class="col-xl-12 col-md-10">
-                               
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                               Liste Des Admins
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <tr>
-                                        <td>
-                                            ID
-                                        </td>
-                                        <td>
-                                            Date
-                                        </td>
-                                        <td>
-                                            Description
-                                        </td>
-                                        <td>
-                                            Etat
-                                        </td>
-                                        <td colspan="2" align="center" >
-                                            Actions
-                                        </td>
-                                    </tr>
-                                    {% if Reclamations is defined %}
-                                        {% for rec in Reclamations %}
-                                        <tr>
-                                            <td>
-                                                {{ rec.getIdrec() }}
-                                            </td>
-                                            <td>
-                                                {% set date = rec.getDate() %}
-                                                {{ date|date('d/m/Y') }}
-                                            </td>
-                                            <td>
-                                                {{ rec.getDescription() }}
-                                            </td>
-                                            <td>
-                                                {{ rec.getEtat() }}
-                                            </td>
-                                            {% if (rec.getEtat() == "Pending") %}
-                                            <td>
-                                                <a href="{{ path( "traiter" , {'idRec':rec.getIdrec() } ) }}"> Traiter </a>
-                                            </td>
-                                            {% endif %}
-                                            {% if (rec.getEtat() == "Treated") %}
-                                            <td>
-                                                <a href="{{ path( "supprimer2" , {'id':rec.idRec} ) }}"> Supprimer </a>
-                                            </td>
-                                            {% endif %}
-                                        </tr>
-                                        {% endfor %}
-                                        <tr>
-                                            <td colspan="4" align="center">
-                                                <a href="ajouter2">Ajouter Reclamation</a>
-                                            </td>
-                                        </tr>
-                                </table>
-                                {% else %}
-                                    No Reclamations found
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </main>
+                {% block content %}
+<div id="layoutSidenav_content">    
+    <main>
+        <div class="container-fluid px-4">
+            <div class="card mb-4">
+                <div class="card-body">
+<div class="container">
+	<div class="table">
+		<div class="table-header">
+			<div class="header__item"><a id="name" class="filter__link" href="#">ID</a></div>
+			<div class="header__item"><a id="wins" class="filter__link filter__link--number" href="#">Date</a></div>
+			<div class="header__item"><a id="draws" class="filter__link filter__link--number" href="#">Description</a></div>
+			<div class="header__item"><a id="losses" class="filter__link filter__link--number" href="#">Etat</a></div>
+			<div class="header__item"><a id="total" class="filter__link filter__link--number" href="#">Actions</a></div>
+		</div>
+		{% if Reclamations is defined %}
+                {% for rec in Reclamations %}
+		<div class="table-content">
+			<div class="table-row">
+				<div class="table-data">
+                    {{ rec.getIdrec() }}
+                </div>
+				<div class="table-data">
+					{% set date = rec.getDate() %}
+                    {{ date|date('d/m/Y') }}
+				</div>
+				<div class="table-data">
+					{{ rec.getDescription() }}
+				</div>
+				<div class="table-data">
+					{{ rec.getEtat() }}
+				</div>
+				{% if (rec.getEtat() == "Pending") %}
+				<div class="table-data">
+					<a href="{{ path( "traiter" , {'idRec':rec.getIdrec() } ) }}"> Traiter </a>
+				</div>
+				{% endif %}
+				{% if (rec.getEtat() == "Treated") %}
+				<div class="table-data">
+					<a href="{{ path( "supprimer2" , {'id':rec.idRec} ) }}"> Supprimer </a>
+				</div>
+		        {% endif %}
+			</div>
+            
+{% endfor %}
+{% endif %}
+			<div class="table-row">
+				<div class="table-data">
+					<a href="ajouter2">Ajouter Reclamation</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		        
+
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
                 {% endblock %}
                 {% block footer %}
                 <footer class="py-4 bg-light mt-auto">
@@ -167,6 +245,76 @@
             </div>
         </div>
             {% block js %}
+            <script>
+                var properties = [
+	'name',
+	'wins',
+	'draws',
+	'losses',
+	'total',
+];
+
+$.each( properties, function( i, val ) {
+	
+	var orderClass = '';
+
+	$("#" + val).click(function(e){
+		e.preventDefault();
+		$('.filter__link.filter__link--active').not(this).removeClass('filter__link--active');
+  		$(this).toggleClass('filter__link--active');
+   		$('.filter__link').removeClass('asc desc');
+
+   		if(orderClass == 'desc' || orderClass == '') {
+    			$(this).addClass('asc');
+    			orderClass = 'asc';
+       	} else {
+       		$(this).addClass('desc');
+       		orderClass = 'desc';
+       	}
+
+		var parent = $(this).closest('.header__item');
+    		var index = $(".header__item").index(parent);
+		var $table = $('.table-content');
+		var rows = $table.find('.table-row').get();
+		var isSelected = $(this).hasClass('filter__link--active');
+		var isNumber = $(this).hasClass('filter__link--number');
+			
+		rows.sort(function(a, b){
+
+			var x = $(a).find('.table-data').eq(index).text();
+    			var y = $(b).find('.table-data').eq(index).text();
+				
+			if(isNumber == true) {
+    					
+				if(isSelected) {
+					return x - y;
+				} else {
+					return y - x;
+				}
+
+			} else {
+			
+				if(isSelected) {		
+					if(x < y) return -1;
+					if(x > y) return 1;
+					return 0;
+				} else {
+					if(x > y) return -1;
+					if(x < y) return 1;
+					return 0;
+				}
+			}
+    		});
+
+		$.each(rows, function(index,row) {
+			$table.append(row);
+		});
+
+		return false;
+	});
+
+});
+            </script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
             <script src="{{asset('Back/js/scripts.js')}}"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>

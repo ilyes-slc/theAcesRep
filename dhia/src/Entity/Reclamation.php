@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Reclamation
@@ -19,6 +20,7 @@ class Reclamation
      * @ORM\Column(name="idRec", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups("post:read")
      */
     private $idrec;
 
@@ -26,6 +28,7 @@ class Reclamation
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date", nullable=false)
+     * @Groups("post:read")
      */
     private $date;
 
@@ -33,6 +36,7 @@ class Reclamation
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     * @Groups("post:read")
      */
     private $description;
 
@@ -40,6 +44,7 @@ class Reclamation
      * @var string
      *
      * @ORM\Column(name="etat", type="string", length=30, nullable=false)
+     * @Groups("post:read")
      */
     private $etat;
 
@@ -50,18 +55,32 @@ class Reclamation
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idClient", referencedColumnName="idClient")
      * })
+     * @Groups("post:read")
      */
     private $idclient;
 
     /**
      * @var \Reparation
      *
-     * @ORM\ManyToOne(targetEntity="Reparation")
+     * @ORM\ManyToOne(targetEntity="Reparation", cascade={"remove"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idRep", referencedColumnName="idRep")
+     *   @ORM\JoinColumn(name="idRep", referencedColumnName="idRep", onDelete="CASCADE")
      * })
+     * @Groups("post:read")
      */
     private $idrep;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
+     */
+    private $method_remb;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
+     */
+    private $target;
 
     public function getIdrec(): ?int
     {
@@ -124,6 +143,30 @@ class Reclamation
     public function setIdrep(?Reparation $idrep): self
     {
         $this->idrep = $idrep;
+
+        return $this;
+    }
+
+    public function getMethodRemb(): ?string
+    {
+        return $this->method_remb;
+    }
+
+    public function setMethodRemb(string $method_remb): self
+    {
+        $this->method_remb = $method_remb;
+
+        return $this;
+    }
+
+    public function getTarget(): ?string
+    {
+        return $this->target;
+    }
+
+    public function setTarget(string $target): self
+    {
+        $this->target = $target;
 
         return $this;
     }

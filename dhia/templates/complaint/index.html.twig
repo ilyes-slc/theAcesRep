@@ -5,12 +5,37 @@
 
 {% block content %}
 <br><br><br><br>
-<div class="container">
-        <fieldset name="Complaint" align="center">
-                <h2>Complaint</h2>
-                {{form(ajouterForm)}}
-        </fieldset>
-</div>
+<div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w780">
+            <div class="card card-3">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Add Complaint</h2>
+                    <form method="POST">
+                        <div class="input-group">
+                            {{ form_widget(ajouterForm.description, {'attr': {'class': 'input--style-3'}}) }}
+                        </div>
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                {{ form_widget(ajouterForm.target, {'attr': {'class': 'rs-select2 js-select-simple select--no-search'}}) }}
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select--no-search">
+                                {{ form_widget(ajouterForm.method_remb, {'attr': {'class': 'rs-select2 js-select-simple select--no-search'}}) }}
+                                <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+                        <div class="p-t-10">
+                            {{ form_widget(ajouterForm.save) }}
+                        </div>
+                        {{ form_rest(ajouterForm) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 <br><br><br><br>
 {% endblock %}
 
