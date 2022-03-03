@@ -1,0 +1,7 @@
+{% extends "livraison/AjouterLivraison.html.twig" %}
+{% block content %}
+
+   <h1 class="mt-4">Ajouter Livraison</h1>
+                  {{ form(livraisonForm) }}
+           <a href="{{ path("afficherLF") }}">retour</a>       
+  {% endblock %}                 
