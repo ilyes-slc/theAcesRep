@@ -86,16 +86,7 @@ class LivreurController extends AbstractController
             1 /*limit per page*/
         );
         
-        if ($request->isMethod("POST"))
-        {
-           if( $name=empty($request->get('name'))){
-           
-            $Livreur=$this->getDoctrine()->getRepository(Livreur::class)->findAll();
-            }elseif($name=$request->get('name')){
-                $Livreur=$this->getDoctrine()->getRepository(Livreur::class)->findBy(array('name'=>$name));
-             
-            }
-        }
+       
 
 
         return $this->render('back/livreur.html.twig',
@@ -107,9 +98,15 @@ class LivreurController extends AbstractController
     /**
      * @Route("/afficherLF", name="afficherLF")
      */
-    public function afficherF()
+    public function afficherF(Request $request,PaginatorInterface $paginator)
     {
         $Livreur=$this->getDoctrine()->getRepository(Livreur::class)->findAll();
+        $Livreur = $paginator->paginate(
+            $Livreur, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            1 /*limit per page*/
+        );
+
         return $this->render('livraison/AjouterLivraison.html.twig',['livreur'=>$Livreur]);
 
 

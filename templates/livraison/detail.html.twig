@@ -1,7 +1,12 @@
-{% extends "livraison/AjouterLivraison.html.twig" %}
+{% extends 'baseFront.html.twig'%}
 {% block content %}
-
+<br><br><br><br>
    <h1 class="mt-4">Ajouter Livraison</h1>
                   {{ form(livraisonForm) }}
+                   <a href="{{ path('mapsF',{"cin":l.cin}) }}">map</a>
            <a href="{{ path("afficherLF") }}">retour</a>       
   {% endblock %}                 
+  {% block payment %}
+ {% endblock %}
+ {% block footer %}
+ {% endblock %}

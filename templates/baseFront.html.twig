@@ -495,8 +495,8 @@
     </div>
 </div>
     {% endblock %}
-<div class="footer">
     {% block footer %}
+<div class="footer">
     <div class="footerSection  container">
         <div class="containerLeft grid">
             <div class="socialIcons grid">
@@ -548,7 +548,7 @@
     </div>
     {% endblock %}
 </div>
-
+{% block payment %}
 <div class="cart" id="cartDiv" >
     <div class="cartItem">
         <div class="closeIconDiv" id="closeCartIcon">
@@ -559,7 +559,7 @@
         </div>
        <div class="itemsAdded" id="itemsInCart">
        </div>
-    {% block payment %}
+   
        <div class="paymentDiv">
         <div class="divDetails">
             <div class="paymentTitle">
