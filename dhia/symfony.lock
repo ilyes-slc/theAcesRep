@@ -1,4 +1,21 @@
 {
+    "api-platform/core": {
+        "version": "2.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "05b57782a78c21a664a42055dc11cf1954ca36bb"
+        },
+        "files": [
+            "./config/packages/api_platform.yaml",
+            "./config/routes/api_platform.yaml",
+            "./src/Entity/.gitignore"
+        ]
+    },
+    "consoletvs/profanity": {
+        "version": "3.2.0"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -82,8 +99,26 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "fig/link-util": {
+        "version": "1.2.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
+    },
+    "illuminate/collections": {
+        "version": "v9.3.1"
+    },
+    "illuminate/conditionable": {
+        "version": "v9.3.1"
+    },
+    "illuminate/contracts": {
+        "version": "v9.3.1"
+    },
+    "illuminate/macroable": {
+        "version": "v9.3.0"
+    },
+    "illuminate/support": {
+        "version": "v9.3.1"
     },
     "laminas/laminas-code": {
         "version": "4.5.1"
@@ -93,6 +128,21 @@
     },
     "myclabs/deep-copy": {
         "version": "1.10.2"
+    },
+    "nelmio/cors-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "./config/packages/nelmio_cors.yaml"
+        ]
+    },
+    "nesbot/carbon": {
+        "version": "2.57.0"
     },
     "nikic/php-parser": {
         "version": "v4.13.2"
@@ -156,6 +206,9 @@
     "psr/log": {
         "version": "1.1.4"
     },
+    "psr/simple-cache": {
+        "version": "3.0.0"
+    },
     "sebastian/cli-parser": {
         "version": "1.0.1"
     },
@@ -215,6 +268,9 @@
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "snipe/banbuilder": {
+        "version": "dev-master"
     },
     "symfony/asset": {
         "version": "v4.4.37"
@@ -600,7 +656,13 @@
     "twig/twig": {
         "version": "v3.3.8"
     },
+    "voku/portable-ascii": {
+        "version": "2.0.0"
+    },
     "webmozart/assert": {
         "version": "1.10.0"
+    },
+    "willdurand/negotiation": {
+        "version": "3.1.0"
     }
 }

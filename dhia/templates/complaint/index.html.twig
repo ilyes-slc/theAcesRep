@@ -11,8 +11,10 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Add Complaint</h2>
-                    <form method="POST">
+                    
+                        {{ form_start(ajouterForm,{'attr': {'novalidate': 'novalidate'}} ) }}
                         <div class="input-group">
+                            {{ form_errors(ajouterForm.description, {'attr': {'class': 'input--style-3'}}) }}
                             {{ form_widget(ajouterForm.description, {'attr': {'class': 'input--style-3'}}) }}
                         </div>
                         <div class="input-group">
@@ -30,8 +32,9 @@
                         <div class="p-t-10">
                             {{ form_widget(ajouterForm.save) }}
                         </div>
+                        
                         {{ form_rest(ajouterForm) }}
-                    </form>
+                        {{ form_end(ajouterForm) }}
                 </div>
             </div>
         </div>

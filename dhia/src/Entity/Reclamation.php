@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert; 
 
 /**
  * Reclamation
@@ -11,6 +13,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Table(name="reclamation", indexes={@ORM\Index(name="fkey2", columns={"idRep"}), @ORM\Index(name="fkey1", columns={"idClient"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\ReclamationRepository")
+ * @ApiResource(
+ *      collectionOperations={"get"},
+ *      itemOperations={"get"}
+ * )
  */
 class Reclamation
 {
@@ -21,6 +27,7 @@ class Reclamation
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      * @Groups("post:read")
+     * @Groups("read:reclamations")
      */
     private $idrec;
 
@@ -29,6 +36,7 @@ class Reclamation
      *
      * @ORM\Column(name="date", type="date", nullable=false)
      * @Groups("post:read")
+     * @Groups("read:reclamations")
      */
     private $date;
 
@@ -37,6 +45,8 @@ class Reclamation
      *
      * @ORM\Column(name="description", type="text", length=65535, nullable=false)
      * @Groups("post:read")
+     * @Groups("read:reclamations")
+     * @Assert\NotBlank
      */
     private $description;
 
@@ -45,6 +55,7 @@ class Reclamation
      *
      * @ORM\Column(name="etat", type="string", length=30, nullable=false)
      * @Groups("post:read")
+     * @Groups("read:reclamations")
      */
     private $etat;
 
@@ -56,6 +67,7 @@ class Reclamation
      *   @ORM\JoinColumn(name="idClient", referencedColumnName="idClient")
      * })
      * @Groups("post:read")
+     * @Groups("read:reclamations")
      */
     private $idclient;
 
@@ -67,18 +79,21 @@ class Reclamation
      *   @ORM\JoinColumn(name="idRep", referencedColumnName="idRep", onDelete="CASCADE")
      * })
      * @Groups("post:read")
+     * @Groups("read:reclamations")
      */
     private $idrep;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:read")
+     * @Groups("read:reclamations")
      */
     private $method_remb;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:read")
+     * @Groups("read:reclamations")
      */
     private $target;
 

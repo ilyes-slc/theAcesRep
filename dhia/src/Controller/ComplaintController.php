@@ -17,7 +17,6 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
 class ComplaintController extends AbstractController
 {
@@ -36,6 +35,7 @@ class ComplaintController extends AbstractController
      */
     public function add(Request $req): Response
     {
+
         $Reclamation = new Reclamation();
         $Rep = new Reparation();
         $Client = new Client();
@@ -85,15 +85,15 @@ class ComplaintController extends AbstractController
         $Reclamation = new Reclamation();
         $Rep = new Reparation();
         $Client = new Client();
-        $Client->setAdresse("mnihlaaaaa");
+        $Client->setAdresse("mnihlaaaaaaaaa");
         $Client->setAge(22);
-        $Client->setImage("dhiaaaaaaaaa");
-        $Client->setLogin("aaaaaaaaa");
-        $Client->setMail("aaaaaaa");
-        $Client->setMdp("aaaaaaaa");
-        $Client->setName("dhiaaaaaaa");
+        $Client->setImage("dhiaaaaaaaaaaaaaaaaaa");
+        $Client->setLogin("aaaaaaaaaaaaaa");
+        $Client->setMail("aaaaaaaaaaaa");
+        $Client->setMdp("aaaaaaaaaaaa");
+        $Client->setName("dhiaaaaaaaaaaa");
         $Client->setPhone(53140939);
-        $Client->setPrenom("amarrrrrrrrr");
+        $Client->setPrenom("amarrrrrrrrrrr");
         $Rep->setDelai(new \DateTime('now'));
         $Reclamation->setDate(new \DateTime('now'));
         $Reclamation->setEtat("Pending");
@@ -124,9 +124,9 @@ class ComplaintController extends AbstractController
     }
 
     /**
-     * @Route("/api", name="api", methods={"GET"})
+     * @Route("/api1", name="api1", methods={"GET"})
      */
-    public function api(ReclamationRepository $repoGr ,SerializerInterface $serializer ):Response
+    public function api1(ReclamationRepository $repoGr ,SerializerInterface $serializer ):Response
     {
         $resultas= $repoGr->findAll();
          /* $n = $normalizer->normalize($result, null, ['groups' => 'post:read']);
