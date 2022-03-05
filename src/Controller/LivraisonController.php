@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ArtoxLab\Bundle\SmsBundle\Service\ProviderManager;
 
@@ -47,9 +47,14 @@ class LivraisonController extends AbstractController
      /**
      * @Route("/afficherL", name="afficherL")
      */
-    public function afficher()
+    public function afficher(Request $request,PaginatorInterface $paginator)
     {
         $Livraison=$this->getDoctrine()->getRepository(Livraison::class)->findAll();
+        $Livraison = $paginator->paginate(
+            $Livraison, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            3 /*limit per page*/
+        );
         return $this->render('back/livraison.html.twig',['livraison'=>$Livraison]);
 
 
