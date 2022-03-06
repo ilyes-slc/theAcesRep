@@ -8,15 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TesterController extends AbstractController
 {
-    /**
-     * @Route("/tester", name="tester")
-     */
-    public function index(): Response
-    {
-        return $this->render('tester/voir4.html.twig', [
-            'controller_name' => 'TesterController',
-        ]);
-    }
+
 
 
 

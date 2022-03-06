@@ -27,11 +27,13 @@ class BlogController extends AbstractController
     /**
      * @Route("/comment/voir", name="blog")
      */
-    public function afficher(): Response
+    public function afficher(  Request $request , ArticleRepository $ArticleRepository): Response
     {
+
         $Articletournoi=$this->getDoctrine()->getRepository(Article::class)->findarticlebytitle1();
         return $this->render('blog/blogtournoi.html.twig', [
             'articletournoi' => $Articletournoi,
+
         ]);
     }
 
@@ -41,30 +43,11 @@ class BlogController extends AbstractController
     public function affichergames(Request $request , ArticleRepository $ArticleRepository): Response
     {
 
-
-        $form = $this->createForm(SearcharticleType::class);
-
-        $search = $form->handleRequest($request);
-
-
-            // On recherche les articles correspondant aux mots clés
-            $Article= $ArticleRepository->search(
-                $search->get('titre')->getData()
-
-            );
-
-
-
-
         $Articlegames=$this->getDoctrine()->getRepository(Article::class)->findarticlebytitle();
         return $this->render('blog/blog3.html.twig', [
             'articlegames' => $Articlegames,
-            'form' => $form->createView(),
-            'Article' => $Article,
+
         ]);
-
-
-
 
 
     }
@@ -88,44 +71,21 @@ class BlogController extends AbstractController
 
         );
 
-
         return $this->render('blog/blog8.html.twig', [
 
             'form' => $form->createView(),
             'Article' => $Article,
         ]);
 
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
      * @Route("/comment/produit", name="produit")
      */
-    public function afficherproduit(): Response
+    public function afficherproduit(Request $request , ArticleRepository $ArticleRepository): Response
     {
+
         $Articleproduct=$this->getDoctrine()->getRepository(Article::class)->findarticlebytitle2();
         return $this->render('blog/blogproduit.html.twig', [
             'articleproduct' =>  $Articleproduct,
@@ -134,27 +94,17 @@ class BlogController extends AbstractController
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @Route("/comment/livreur", name="livreur")
      */
-    public function afficherlivreur(): Response
+    public function afficherlivreur(Request $request , ArticleRepository $ArticleRepository): Response
     {
         $Articlelivreur=$this->getDoctrine()->getRepository(Article::class)->findarticlebytitle3();
         return $this->render('blog/livrer.html.twig', [
             'articlelivreur' => $Articlelivreur,
         ]);
     }
+
     /**
      * @Route("/DETAIL", name="DETAIL")
      */
@@ -188,10 +138,6 @@ class BlogController extends AbstractController
         $a->flush();
         return $this->redirectToRoute('comment');
     }
-
-
-
-
 
 
 }

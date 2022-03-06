@@ -38,11 +38,6 @@ class CommentController extends AbstractController
         $commentaire->setArticle($Article);
         $Client = new Client();
 
-
-
-
-
-
         $Client->setAdresse("aa");
         $Client->setAge(22);
         $Client->setImageClient("aa");
@@ -63,15 +58,11 @@ class CommentController extends AbstractController
             $entityManager->persist($commentaire);
             $entityManager->persist($Article);
 
-
-
             $entityManager->flush();
 
 
             return $this->redirectToRoute('comment_index', array('id'=>$id), Response::HTTP_SEE_OTHER);
         }
-
-
 
         return $this->render('blog/detailencore.html.twig', [
             'commentaire' => $commentaire,
@@ -84,21 +75,14 @@ class CommentController extends AbstractController
 
 
 
-
-
-
-
-
-
-
     /**
      * @Route("/new", name="comment_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+  /*  public function new(Request $request): Response
 
     {
 
-        $Article=$this->getDoctrine()->getRepository(Article::class)->findAll();
+        $Article = $this->getDoctrine()->getRepository(Article::class)->findAll();
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
         $form->handleRequest($request);
@@ -108,7 +92,7 @@ class CommentController extends AbstractController
             $entityManager->persist($commentaire);
             $entityManager->flush();
 
-            return $this->redirectToRoute('comment_index', array('id'=>$commentaire->getId()), Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('comment_index', array('id' => $commentaire->getId()), Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('blog/detailencore.html.twig', [
@@ -116,8 +100,7 @@ class CommentController extends AbstractController
             'form' => $form->createView(),
             'afficherx' => $Article,
         ]);
-    }
-
+    }*/
 
 
 
@@ -125,22 +108,18 @@ class CommentController extends AbstractController
     /**
      * @Route("/new1/{id}", name="comment_new1", methods={"GET","POST"})
      */
+
     public function new1(Request $request , int $id ,CommentaireRepository $commentaireRepository): Response
 
     {
 
-        $Article=$this->getDoctrine()->getRepository(Article::class)->find($id);
+        $Article=$this->getDoctrine()->getRepository(Article::class)->find($id); //chercher article par id
         $list_comm = $this->getDoctrine()->getRepository(Commentaire::class)->findBy(
             ['article' => $id]
         );
         $commentaire = new Commentaire();
         $commentaire->setArticle($Article);
         $Client = new Client();
-
-
-
-
-
 
         $Client->setAdresse("aa");
         $Client->setAge(22);
@@ -181,25 +160,6 @@ class CommentController extends AbstractController
         ]);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * @Route("/{id}", name="comment_show", methods={"GET"})
      */
@@ -222,8 +182,8 @@ class CommentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('comment_index', [], Response::HTTP_SEE_OTHER);
-        }
+            return $this->redirectToRoute('comment_index', array('id'=>$commentaire->getArticle()->getId()), Response::HTTP_SEE_OTHER);
+        } //array pour fonction paramétrée
 
         return $this->render('comment/edit.html.twig', [
             'commentaire' => $commentaire,
@@ -234,22 +194,17 @@ class CommentController extends AbstractController
 
     }
 
-
-
-
-
-
-
     /**
      * @Route("/supprimercomm4/{id}", name="supprimercomm4")
      */
     public function supprimercomm4($id)
     {
         $comm=$this->getDoctrine()->getRepository(Commentaire::class)->find($id);
+        $Art=$comm->getArticle()->getId();
         $a=$this->getDoctrine()->getManager();
         $a->remove($comm);
         $a->flush();
-        return $this->redirectToRoute('comment_index');
+        return $this->redirectToRoute('comment_index', array('id'=>$Art));
     }
 
 

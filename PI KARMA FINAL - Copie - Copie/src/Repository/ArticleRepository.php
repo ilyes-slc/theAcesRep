@@ -91,15 +91,20 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
 
     }
-    public function search($mots = null){
-        $query = $this->createQueryBuilder('a');
+    public function search($mots){
+        $entityManager = $this->getEntityManager();
 
-        if($mots != null){
-            $query->Where('a.titre like :texte')
-                ->setParameter('texte',$mots);
-        }
+        $query = $entityManager->createQuery('
+        SELECT a 
+        FROM App\Entity\Article a
+        WHERE a.titre LIKE :titre
+        OR a.contenu LIKE :titre  
+        ')->setParameter('titre' , '%' . $mots . '%');
 
-        return $query->getQuery()->getResult();
+        return $query->getResult();
     }
+
+
+
 
 }

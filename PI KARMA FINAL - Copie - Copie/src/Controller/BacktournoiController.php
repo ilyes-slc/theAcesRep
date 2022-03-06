@@ -8,13 +8,15 @@ use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BacktournoiController extends AbstractController
 {
 
     /**
-     * @Route("/tournoi", name="showtournoi")
+     * @Route("/comment/tournoi", name="showtournoi")
      */
     public function showtournoi()
     {
@@ -27,9 +29,9 @@ class BacktournoiController extends AbstractController
     }
 
     /**
-     * @Route("/ajoutertournoi", name="Article")
+     * @Route("/comment/ajoutertournoi", name="Article")
      */
-    public function addtournoi(Request $req): Response
+    public function addtournoi(Request $req ,MailerInterface $mailer ): Response
     {
         $Article = new Article();
         $form = $this->createForm(ArticleType::class, $Article);
@@ -52,6 +54,15 @@ class BacktournoiController extends AbstractController
             $entite = $this->getDoctrine()->getManager();
             $entite->persist($Article);
             $entite->flush();
+
+            $mail = (new Email())
+                ->from('karma.aycha@esprit.tn')
+                ->to('amal.souissi@esprit.tn')
+                ->subject('New Article added')
+                ->text('Dear Customer, A tournament article has been added, visit it!! '.PHP_EOL.PHP_EOL.'' .$form->get('titre')->getData()  .PHP_EOL.PHP_EOL.'' .$form->get('contenu')->getData())
+                ->embed(fopen('C:/xampp/htdocs/Aycha git/theAcesRep/PI KARMA FINAL - Copie - Copie/public/uploads/images/'.$originalFilename.'.png', 'r'), 'logo.png');
+
+            $mailer->send($mail);
             return $this->redirectToRoute('showtournoi');
         }
         return $this->render('backtournoi/afficherform2.html.twig', [

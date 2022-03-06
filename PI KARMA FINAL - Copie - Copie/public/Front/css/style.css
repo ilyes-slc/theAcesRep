@@ -1432,7 +1432,7 @@ ol {
 }
 
 .blog__item__text p span {
-	color: #e53637;
+
 	margin-right: 5px;
 }
 
@@ -1494,7 +1494,8 @@ ol {
 }
 
 .blog__details__title .blog__details__social a.pinterest {
-	background: #ca2027;
+
+
 }
 
 .blog__details__title .blog__details__social a.linkedin {
@@ -1662,7 +1663,7 @@ ol {
 }
 
 .blog__details__comment__item__text a:hover {
-	background: #e53637;
+
 }
 
 .blog__details__form {
@@ -1852,7 +1853,7 @@ ol {
 }
 
 .login__register .primary-btn {
-	background: #e53637;
+
 	padding: 12px 42px;
 }
 
@@ -1935,7 +1936,7 @@ ol {
 }
 
 .signup .login__form h5 a {
-	color: #e53637;
+
 	font-weight: 700;
 }
 
@@ -1980,7 +1981,7 @@ ol {
 	color: #ffffff;
 	height: 50px;
 	width: 50px;
-	background: #e53637;
+
 	line-height: 50px;
 	text-align: center;
 	border-radius: 50%;
@@ -2021,7 +2022,7 @@ ol {
 }
 
 .footer__copyright__text a {
-	color: #e53637;
+
 }
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/

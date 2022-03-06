@@ -17,7 +17,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-    public function index(): Response
+  /*  public function index(): Response
     {
         $form = $this->createFormBuilder(null)
             ->add('query', TextType::class)
@@ -33,7 +33,7 @@ class SearchController extends AbstractController
         ]);
 
 
-    }
+    }*/
 
 
 

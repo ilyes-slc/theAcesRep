@@ -31,6 +31,7 @@
         <!-- style CSS -->
         <link rel="stylesheet" href="{{ asset('Front/css1/style.css')}}">
 
+
     {% endblock %}
 </head>
 <body>
@@ -595,7 +596,17 @@
     <script src="{{asset('Front/swiper-bundle.min.js')}}"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="{{asset('Front/main.js')}}"></script>
-
+        <script type='text/javascript' src='{{ asset('Front/js4/jquery.js') }}"></script>
+        <script type='text/javascript' src='{{ asset('Front/js4/jquery.simplemodal.js') }}"></script>
+        <script type='text/javascript' src='{{ asset('Front/js4/basic.js') }}"></script>
+        <script>
+function myFunction() {
+  var x = document.createElement("TEXTAREA");
+  var t = document.createTextNode("At w3schools.com you will learn how to make a website.");
+  x.appendChild(t);
+  document.body.appendChild(x);
+}
+</script>
     {% endblock %}
     {% endblock %}
 </body>

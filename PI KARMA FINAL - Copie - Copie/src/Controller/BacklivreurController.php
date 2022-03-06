@@ -8,6 +8,8 @@ use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BacklivreurController extends AbstractController
@@ -25,7 +27,7 @@ class BacklivreurController extends AbstractController
 
 
     /**
-     * @Route("/afficherliv", name="live")
+     * @Route("/comment/afficherliv", name="live")
      */
     public function showlivreur()
     {
@@ -36,10 +38,11 @@ class BacklivreurController extends AbstractController
 
     }
 
+
     /**
-     * @Route("/ajouterlivreur", name="livrer")
+     * @Route("/comment/ajouterlivreur", name="livrer")
      */
-    public function addlivreur(Request $req): Response
+    public function addlivreur(Request $req,MailerInterface $mailer): Response
     {
         $Article = new Article();
         $form = $this->createForm(ArticleType::class, $Article);
@@ -56,19 +59,17 @@ class BacklivreurController extends AbstractController
                 $newFilename
             );
             $Article->setImagearticle($newFilename);
-
-
-
-
-
-
-
-
-
-
             $entite = $this->getDoctrine()->getManager();
             $entite->persist($Article);
             $entite->flush();
+            $mail = (new Email())
+                ->from('karma.aycha@esprit.tn')
+                ->to('mednabil.kallel@esprit.tn')
+                ->subject('New Article added')
+                ->text('Dear Customer, A delivery item has been added, visit it, your opinion counts!! '.PHP_EOL.PHP_EOL.'' .$form->get('titre')->getData()  .PHP_EOL.PHP_EOL.'' .$form->get('contenu')->getData())
+                ->embed(fopen('C:/xampp/htdocs/Aycha git/theAcesRep/PI KARMA FINAL - Copie - Copie/public/uploads/images/'.$originalFilename.'.png', 'r'), 'logo.png');
+
+            $mailer->send($mail);
             return $this->redirectToRoute('live');
         }
         return $this->render('backlivreur/formlivreur.html.twig', [

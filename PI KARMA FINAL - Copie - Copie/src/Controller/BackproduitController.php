@@ -6,8 +6,12 @@ use App\Entity\Article;
 use App\Form\ArticleType;
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BackproduitController extends AbstractController
@@ -22,7 +26,7 @@ class BackproduitController extends AbstractController
         ]);
     }
     /**
-     * @Route("/afficherproduct", name="product")
+     * @Route("/comment/afficherproduct", name="product")
      */
     public function showproduct()
     {
@@ -33,10 +37,14 @@ class BackproduitController extends AbstractController
 
     }
 
+
+
+
+
     /**
-     * @Route("/ajouterproduct", name="produit1")
+     * @Route("/comment/ajouterproduct", name="produit1")
      */
-    public function addproduct(Request $req): Response
+    public function addproduct(Request $req,MailerInterface $mailer): Response
     {
         $Article = new Article();
         $form = $this->createForm(ArticleType::class, $Article);
@@ -52,16 +60,17 @@ class BackproduitController extends AbstractController
                 $newFilename
             );
             $Article->setImagearticle($newFilename);
-
-
-
-
-
-
-
             $entite = $this->getDoctrine()->getManager();
             $entite->persist($Article);
             $entite->flush();
+            $mail = (new Email())
+                ->from('karma.aycha@esprit.tn')
+                ->to('mohameddhia.benamar@esprit.tn')
+                ->subject('New Article added')
+                ->text('Dear Customer, a Product Item has been added, please let us know what you think! '.PHP_EOL.PHP_EOL.'' .$form->get('titre')->getData()  .PHP_EOL.PHP_EOL.'' .$form->get('contenu')->getData())
+                ->embed(fopen('C:/xampp/htdocs/Aycha git/theAcesRep/PI KARMA FINAL - Copie - Copie/public/uploads/images/'.$originalFilename.'.png', 'r'), 'logo.png');
+
+            $mailer->send($mail);
             return $this->redirectToRoute('product');
         }
         return $this->render('backproduit/formproduit.html.twig', [

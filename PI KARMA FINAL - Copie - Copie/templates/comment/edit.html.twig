@@ -1,11 +1,25 @@
-<!DOCTYPE html>
 
-<title>Edit Commentaire</title>
+{% extends 'test/baseFront.html.twig' %}
 
-{% block body %}
+
+
+{% block title %}<title>Edit Commentaire</title>{% endblock %}
+
+{% block content %}
+    <style>
+        label{
+            color:white;
+        }
+        button {
+            color:white;
+        }
+    </style>
     <h1>Edit Commentaire</h1>
 
-    {{ include('comment/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button href="{{ path('comment_index', {'id': commentaire.getArticle().getId()})}}" style ="color:white" class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
 
    
 

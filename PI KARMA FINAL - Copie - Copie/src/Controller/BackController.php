@@ -24,7 +24,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 class BackController extends AbstractController
 {
     /**
-     * @Route("/back", name="back")
+     * @Route("/comment/back", name="back")
      */
     public function index(): Response
     {
@@ -34,8 +34,9 @@ class BackController extends AbstractController
     }
 
 
+
     /**
-     * @Route("/jouer", name="jouer")
+     * @Route("/comment/jouer", name="jouer")
      */
     public function games()
     {
@@ -48,7 +49,7 @@ class BackController extends AbstractController
     }
 
     /**
-     * @Route("/ajouterjeux", name="jeux")
+     * @Route("/comment/ajouterjeux", name="jeux")
      */
     public function addjeux(Request $req,MailerInterface $mailer  ): Response
     {
@@ -66,21 +67,20 @@ class BackController extends AbstractController
                 $newFilename
             );
             $Article->setImagearticle($newFilename);
-
-
-
-
             $entite = $this->getDoctrine()->getManager();
             $entite->persist($Article);
             $entite->flush();
+
             $mail = (new Email())
                 ->from('karma.aycha@esprit.tn')
-                ->to('amal.souissi@esprit.tn')
-                ->subject('Article added')
-                ->text('Chere/Cher Client, Un article jeux a été ajouté!!');
+                ->to('mohameddhia.benamar@esprit.tn')
+                ->subject('New Article added')
+                ->text('Dear Customer, A game article has been added!! '.PHP_EOL.PHP_EOL.'' .$form->get('titre')->getData()  .PHP_EOL.PHP_EOL.'' .$form->get('contenu')->getData())
+                ->embed(fopen('C:/xampp/htdocs/Aycha git/theAcesRep/PI KARMA FINAL - Copie - Copie/public/uploads/images/'.$originalFilename.'.png', 'r'), 'logo.png');
 
             $mailer->send($mail);
             return $this->redirectToRoute('jouer');
+
         }
         return $this->render('back/afficherform.html.twig', [
             'article'=>$form->createView()
@@ -92,7 +92,7 @@ class BackController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-    public function Search(string $texte ): Response
+   /* public function Search(string $texte ): Response
     {
         $form = $this->createFormBuilder(null)
             ->add('query', TextType::class)
@@ -106,8 +106,7 @@ class BackController extends AbstractController
             'controller_name' => 'SearchController',
             'form' => $form->createView(),
         ]);
-    }
-
+    }*/
 
 
     /**
@@ -122,14 +121,6 @@ class BackController extends AbstractController
         return new JsonResponse($json,200,[],true) ;
 
     }
-
-
-
-
-
-
-
-
 
 
     /**
@@ -155,8 +146,6 @@ class BackController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-
-
             $uploadedFile = $form['photoFile']->getData();
             $pathupload = $this->getParameter('kernel.project_dir').'/public/uploads/images';
             $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
