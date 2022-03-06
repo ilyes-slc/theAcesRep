@@ -1,0 +1,38 @@
+{% include 'amal/baseBack.html.twig'%}
+
+{% block content1 %}
+
+<div class="row" style="margin-left:20%">
+<h1>Liste des sponsors</h1>
+
+
+<br><br>
+            <table  class="table">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>logo</th>
+                </tr>
+
+                <tbody>
+
+                {% for Sponsor in sponsors %}
+
+
+
+
+                    <td>{{ Sponsor.id }}</td>
+                    <td>{{ Sponsor.name }}</td>
+                    <td>{{ Sponsor.logo}}</td>
+                    <td> <a href="{{path('sponsors_edit',{'id':Sponsor.id})}}"> modifier</td>
+                    <td> <a href="{{path('sponsors_delete',{'id':Sponsor.id})}}"> Supprimer</td>
+                    </tr>
+
+                {% endfor%}
+
+                </tbody>
+            </table>
+    </div>
+    {% endblock %}
+

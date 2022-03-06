@@ -1,0 +1,33 @@
+{% extends 'mariem/baseBack.html.twig' %}
+
+{% block title %}Dashboard - SB Admin{% endblock %}
+
+{% block body %}
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+            <tr>
+                <th>id de Promotion</th>
+                <th>date Debut de Promotion</th>
+                <th>date Fin de Promotion</th>
+                <th>pourcentage de Promotion</th>
+                <th>nom du produit</th>
+                <th>Modifer/Supprimer</th>
+            </tr>
+            <tbody>
+            {% for element in Promotion %}
+                <tr>
+                    <td>{{ element.id }}</td>
+                    <td>{{ element.dateDebut|date('Y-m-d') }}</td>
+                    <td>{{ element.dateFin|date('Y-m-d') }}</td>
+                    <td>{{ element.pourcentage }}</td>
+                    <td>{{ element.idprod.nom }}</td>
+                    <td><a href="{{ path('modifierPromotion',{'id':element.id}) }}"> modifier </a></td>
+                    <td><a href="{{ path('supprimer',{'id':element.id}) }}"> Supprimer </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

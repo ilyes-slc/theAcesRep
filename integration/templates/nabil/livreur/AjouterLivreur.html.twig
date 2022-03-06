@@ -1,0 +1,45 @@
+
+ {% extends "nabil/back/baseBack.html.twig" %}
+{% block content %}
+<div id="layoutSidenav_content">
+                <main>
+                   
+                        
+                        <ol class="breadcrumb mb-4">
+                          
+                        </ol>
+                       
+                        
+ <div class="card-body">
+<ul>{{ form_start(livreurForm,{'attr': {'novalidate': 'novalidate'}} ) }}
+{#{{ form_start(livreurForm) }}#}
+<h1> Ajouter un Livreur </h1>
+
+ <li> {{ form_errors(livreurForm.cin) }} 
+{{ form_label(livreurForm.cin,"numero de cin") }}
+{{ form_widget(livreurForm.cin) }}</li>
+<li>{{ form_errors(livreurForm.name) }}
+{{ form_label(livreurForm.name,"nom") }}
+{{ form_widget(livreurForm.name)}}</li>
+<li>{{ form_errors(livreurForm.prenom) }}
+{{ form_label(livreurForm.prenom,"prenom") }}
+{{ form_widget(livreurForm.prenom)}}</li>
+<li>{{ form_errors(livreurForm.dateNaissance) }}
+{{ form_label(livreurForm.dateNaissance,"date de naissance") }}
+{{ form_widget(livreurForm.dateNaissance)}}</li> 
+<li>{{ form_errors(livreurForm.image) }}
+{{ form_label(livreurForm.image,"image") }}
+{{ form_widget(livreurForm.image)}}</li> 
+<li>{{ form_errors(livreurForm.zone) }}
+
+{{ form_label(livreurForm.zone,"zone") }}
+{{ form_widget(livreurForm.zone)}}</li> 
+<li>{{ form_errors(livreurForm.tel) }}
+{{ form_label(livreurForm.tel,"tel") }}
+{{ form_widget(livreurForm.tel)}}</li> 
+{{ form_end(livreurForm) }}</ul>
+<a href="{{ path("afficher") }}">retour</a>
+</maim>
+</div>
+                           
+ {% endblock %}
