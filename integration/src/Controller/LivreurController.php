@@ -211,7 +211,6 @@ class LivreurController extends AbstractController
       return $realEntities;
   }
 
-<<<<<<< HEAD
     /**
      * @Route("/detail/{cin}", name="detail")
      */
@@ -228,22 +227,4 @@ class LivreurController extends AbstractController
         return $this->render('nabil/back/nabil.html.twig',['livraison'=>$tableau]);
 
     }
-=======
-  /**
-     * @Route("/detail/{cin}", name="detail")
-     */
-public function nabil($cin)
-{
-    $Livreur=$this->getDoctrine()->getRepository(Livreur::class)->find($cin);
-    $Livraison=$this->getDoctrine()->getRepository(Livraison::class)->findAll();
-    $tableau= array();
-    foreach ($Livraison as $l)
-    {  if($l->getCinlivreur()== $Livreur)
-        array_push($tableau, $l);
-
-    }
-    return $this->render('nabil/back/nabil.html.twig',['livraison'=>$tableau]);
-
-}
->>>>>>> 7deaab7f18e24151db3f68d940142e0ecf6b5a2a
 }
