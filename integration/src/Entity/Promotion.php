@@ -53,14 +53,17 @@ class Promotion
      * @Groups("Element")
      */
     private $dateDebut;
+
     /**
-     * @ORM\ManyToOne(targetEntity=Element::class, inversedBy="promotions")
-     * @JoinColumn(onDelete="CASCADE")
-     * @Groups("Element")
+     * @ORM\OneToMany(targetEntity=Element::class, mappedBy="promotion",cascade={"persist"})
      */
+    private $elements;
 
+    public function __construct()
+    {
+        $this->elements = new ArrayCollection();
+    }
 
-    private $idprod;
 
     public function getId(): ?int
     {
@@ -109,17 +112,38 @@ class Promotion
         return $this;
     }
 
-
-    public function getIdprod(): ?Element
+    /**
+     * @return Collection<int, Element>
+     */
+    public function getElements(): Collection
     {
-        return $this->idprod;
+        return $this->elements;
     }
 
-    
-    public function setIdprod(?Element $idprod): self
+    public function addElement(Element $element): self
     {
-        $this->idprod = $idprod;
+        if (!$this->elements->contains($element)) {
+            $this->elements[] = $element;
+            $element->setPromotion($this);
+        }
 
         return $this;
     }
+
+    public function removeElement(Element $element): self
+    {
+        if ($this->elements->removeElement($element)) {
+            // set the owning side to null (unless already changed)
+            if ($element->getPromotion() === $this) {
+                $element->setPromotion(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+
+
+
 }

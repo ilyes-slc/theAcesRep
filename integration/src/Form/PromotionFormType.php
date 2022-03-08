@@ -16,7 +16,7 @@ class PromotionFormType extends AbstractType
         $builder
             ->add('dateFin')
             ->add('pourcentage')
-            ->add('idprod')
+            ->add('elements')
             ->add('Save', SubmitType::class, ['label' => 'Create Promotion'])
         ;
     }

@@ -40,7 +40,7 @@
                                 <td> {% if element.etat==1 %}
                                         disponible
                                     {% else %}
-                                     non disponible
+                                        non disponible
                                     {% endif %}
 
                                 </td>
@@ -52,22 +52,21 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            {% for promotion in element.promotions %}
-                                                <tr>
-                                                    <td>{{ promotion.pourcentage }} |</td>
-                                                </tr>
-                                            {% endfor %}
+                                        {% if element.promotion is not null %}
+                                            <tr>
+                                                <td> en promotion </td>
+                                            </tr>
+                                        {% endif %}
 
                                     </table> </td>
                                 <td><a href="{{ path('e_modifier',{'id':element.id}) }}"> modifier </a>
-                                   <br>
+                                    <br>
                                     <a href="{{ path('e_supprimer',{'id':element.id}) }}"> Supprimer </a> </td>
 
                             </tr>
                         {% endfor %}
-
                         </tbody>
                     </table>
+                    {{ knp_pagination_render(element) }}
                 </div>
             {% endblock %}
-

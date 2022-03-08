@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Gedmo\Sluggable\Util\Urlizer;
 
 
 /**
@@ -116,20 +117,21 @@ class TournoiController extends AbstractController
         $form = $this->createForm(TournoiType::class, $tournoi);
         $form->handleRequest($request);
 
-        $brochureFile = $form->get('image')->getData();
+
 
         // this condition is needed because the 'brochure' field is not required
         // so the PDF file must be processed only when a file is uploaded
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form->get('image')->getData();
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-            try {
-                $file->move($this->getParameter('brochures_directory'), $fileName);
-            } catch (FileException $e) {
+            $uploadedFile = $form['photoFile']->getData();
+            $pathupload = $this->getParameter('kernel.project_dir').'/public/amal/uploads/images';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $pathupload,
+                $newFilename
+            );
 
-            }
-
-            $tournoi->setImage($fileName);
+            $tournoi->setImage($originalFilename);
             $entityManager->persist($tournoi);
             $entityManager->flush();
             // updates the 'brochureFilename' property to store the PDF file name

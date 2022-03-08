@@ -15,16 +15,7 @@
                         <span class="name">{{ element.nom }}</span>
                     </div>
                     <div class="price">
-                        {% if element.promotions|length != 0 %}
-                            {% for promotion in element.promotions %}
-                                <span class="previous" style="color: grey; margin-right: 25px"> <del> {{ element.prix }}$ </del> </span>
-                                {% set newprice= element.prix - (promotion.pourcentage * element.prix)/100 %}
-                                <span class="current">{{ newprice }} </span>
-                            {% endfor %}
-                        {% else %}
-                            <span class="previous" style="margin-right: 25px"> {{ element.prix }}$  </span>
-                        {% endif %}
-
+                        <span class="current">{{ element.prix }} DT</span>
                     </div>
 
                 </div>
@@ -120,4 +111,3 @@
 
 
 {% endblock %}
-

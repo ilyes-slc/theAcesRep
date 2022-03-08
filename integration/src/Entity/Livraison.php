@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Livraison
  *
- * @ORM\Table(name="livraison", indexes={@ORM\Index(name="fkey_livreur", columns={"cinLivreur"})})
+ * @ORM\Table(name="livraison", indexes={@ORM\Index(name="fkey_livreur", columns={"cinLivreur"}), @ORM\Index(name="fkey1000", columns={"idClient"}), @ORM\Index(name="fkey1001", columns={"idProd"})})
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="App\Repository\LivraisonRepository")
  * 
@@ -33,17 +33,23 @@ class Livraison
     private $method;
 
     /**
-     * @var int
+     * @var \Client
      *
-     * @ORM\Column(name="idClient", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Client", cascade={"remove"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idClient", referencedColumnName="idClient", onDelete="CASCADE")
+     * })
      * 
      */
     private $idclient;
 
     /**
-     * @var int
+     * @var \Element
      *
-     * @ORM\Column(name="idProd", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Element", cascade={"remove"})
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idProd", referencedColumnName="id", onDelete="CASCADE")
+     * })
      */
     private $idprod;
 
@@ -65,9 +71,9 @@ class Livraison
     /**
      * @var \Livreur
      *
-     * @ORM\ManyToOne(targetEntity="Livreur")
+     * @ORM\ManyToOne(targetEntity="Livreur", cascade={"remove"})
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cinLivreur", referencedColumnName="cin")
+     *   @ORM\JoinColumn(name="cinLivreur", referencedColumnName="cin", onDelete="CASCADE")
      * })
      */
     private $cinlivreur;
@@ -89,24 +95,24 @@ class Livraison
         return $this;
     }
 
-    public function getIdclient(): ?int
+    public function getIdclient(): ?Client
     {
         return $this->idclient;
     }
 
-    public function setIdclient(int $idclient): self
+    public function setIdclient(?Client $idclient): self
     {
         $this->idclient = $idclient;
 
         return $this;
     }
 
-    public function getIdprod(): ?int
+    public function getIdprod(): ?Element
     {
         return $this->idprod;
     }
 
-    public function setIdprod(int $idprod): self
+    public function setIdprod(?Element $idprod): self
     {
         $this->idprod = $idprod;
 

@@ -1,45 +1,34 @@
-
 {% extends 'mariem/baseFront.html.twig' %}
 {% block title %} Elment {% endblock %}
 
 
 
 {% block body %}
-    <div class="browser section container"  id="browser">
-    {% for element in element %}
-        <div class="ItemCard grid browserOne" >
-            <div class="cardText">
-                <div class="cardPrice">
-                    <small>Starting from ...</small>
-                    <div class="price">
-                        {% if element.promotions|length != 0 %}
-                            {% for promotion in element.promotions %}
-                                <span class="previous" style="color: grey; margin-right: 25px"> <del> {{ element.prix }}$ </del> </span>
-                                {% set newprice= element.prix - (promotion.pourcentage * element.prix)/100 %}
-                                <span class="current">{{ newprice }} </span>
-                            {% endfor %}
-                        {% else %}
-                            <span class="previous" style="margin-right: 25px"> {{ element.prix }}$  </span>
-                        {% endif %}
+    <div class="browser section container" id="browser">
+        {% for element in element %}
+            <div class="ItemCard grid browserOne">
+                <div class="cardText">
+                    <div class="cardPrice">
+                        <small>Starting from ...</small>
+                        <div class="price">
+                            <span class="previous" style="color: grey; margin-right: 25px"> <span> {{ element.prix }}$ </span> </span>
+                        </div>
+                    </div>
+                    <div class="itemNameDiv">
+                        <span class="name">{{ element.nom }}</span>
+                        <div class="cartButton">
+                            <i class="uil uil-minus-circle icon"></i>
+                            <span><a href="{{ path('element_showFront',{'id':element.id}) }}"> Browse </a></span>
+                        </div>
                     </div>
                 </div>
-                <div class="itemNameDiv">
-                    <span class="name">{{ element.nom }}</span>
-                    <div class="cartButton">
-                        <i class="uil uil-minus-circle icon"></i>
-                        <span><a href="{{ path('element_showFront',{'id':element.id}) }}"> Browse </a></span>
 
-                    </div>
+                <div class="itemImage">
+                    <img src="{{ asset('uploads/images/'~element.image) }}" height="100px" width="250px"
+                         alt="Mice Image">
                 </div>
             </div>
-
-            <div class="itemImage">
-                <img src="{{asset('uploads/images/'~element.image) }}" height="100px" width="250px" alt="Mice Image" >
-            </div>
-        </div>
-    {% endfor%}
-
-
+        {% endfor %}
 
 
     </div>
@@ -53,9 +42,10 @@
                 <h2 class="sectionTitle">
                     Featured Gears
                 </h2>
-                <p> Here are some of the features items to enhace you gaming experience. You deserve  great gear for unforgattable experience!  </p>
+                <p> Here are some of the features items to enhace you gaming experience. You deserve great gear for
+                    unforgattable experience! </p>
             </div>
-            <div class="cartButton" >
+            <div class="cartButton">
                 <i class="uil uil-minus-circle icon"></i>
                 <span>Browse</span>
             </div>
@@ -65,7 +55,7 @@
             <div class="swiper-wrapper">
                 <div class="sectionItem swiper-slide">
                     <div class="itemImageDiv">
-                        <img src="{{asset('Front/Images/earpod.png')}}" alt="Image">
+                        <img src="{{ asset('Front/Images/earpod.png') }}" alt="Image">
                     </div>
                     <div class="itemDetails">
                         <span class="name">Earpod</span>
@@ -79,7 +69,7 @@
                 </div>
                 <div class="sectionItem swiper-slide">
                     <div class="itemImageDiv">
-                        <img src="{{asset('Front/Images/computer2.png')}}" alt="Image">
+                        <img src="{{ asset('Front/Images/computer2.png') }}" alt="Image">
                     </div>
                     <div class="itemDetails">
                         <span class="name">Laptop</span>
@@ -93,7 +83,7 @@
                 </div>
                 <div class="sectionItem swiper-slide">
                     <div class="itemImageDiv">
-                        <img src="{{asset('Front/Images/keyboard.png')}}" alt="Image">
+                        <img src="{{ asset('Front/Images/keyboard.png') }}" alt="Image">
                     </div>
                     <div class="itemDetails">
                         <span class="name">Moucepad</span>
@@ -107,7 +97,7 @@
                 </div>
                 <div class="sectionItem swiper-slide">
                     <div class="itemImageDiv">
-                        <img src="{{asset('Front/Images/gaming chair.png')}}" alt="Image">
+                        <img src="{{ asset('Front/Images/gaming chair.png') }}" alt="Image">
                     </div>
                     <div class="itemDetails">
                         <span class="name">Gaming Chair</span>
@@ -125,4 +115,3 @@
 
 
 {% endblock %}
-

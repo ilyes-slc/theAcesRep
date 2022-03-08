@@ -6,9 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Gaming Gear Website{% endblock %}</title>
     {% block css %}
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/bootstrap.min.css') }}">
+        <!-- animate CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/animate.css') }}">
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/owl.carousel.min.css') }}">
+        <!-- font awesome CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/all.css') }}">
+        <!-- flaticon CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/flaticon.css')}}">
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/themify-icons.css')}}">
+        <!-- font awesome CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/magnific-popup.css') }}/">
+        <!-- swiper CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/slick.css')}}">
+        <!-- style CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/style.css')}}">
+        <style>
+            .dropbtn {
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {background-color: #f1f1f1}
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+
+            }
+        </style>
     <link rel="stylesheet" href="{{asset('Front/main.css')}} ">
     <link rel="stylesheet" href="{{asset('https://unicons.iconscout.com/release/v4.0.0/css/line.css')}} ">
     <link rel="stylesheet" href="{{asset('Front/swiper-bundle.min.css')}}">
+        <link rel="stylesheet" href="{{asset('aycha/Front/main.css')}} ">
+        <link rel="stylesheet" href="{{asset('https://unicons.iconscout.com/release/v4.0.0/css/line.css')}} ">
+        <link rel="stylesheet" href="{{asset('aycha/Front/swiper-bundle.min.css')}}">
     {% endblock %}
 
 
@@ -18,41 +79,57 @@
 <body>
     {% block body %}
     <!-- ========================= Header Section -->
-    <header class="header " id="header">
-        <div class="logoDiv">
-           <a href="#home"> <i class="uil uil-pagerduty icon logoIcon"></i></a>
-        </div>
-        <div class="navBar" id="navBar">
-            <ul class="navLists">
-                <li class="navItem"><a href="#browser" class="navLink">Gears</a></li>
-                <li class="navItem"><a href="#features" class="navLink">Features</a></li>
-                <li class="navItem"><a href="#newgear" class="navLink">New Arrival</a></li>
-                <li class="navItem"><a href="#test" class="navLink">ProGammers</a></li>
-                <li class="navItem"><a href="blog" class="navLink">Our Blog</a></li>
-                <li class="navItem"><a href="tournoi" class="navLink">Our Event</a></li>
-            </ul>
-           <div class="closeIconDiv" id="closeIcon">
-            <i class="uil uil-times-circle icon closeIcon"></i>
-           </div>
-        </div>
-        <div class="toggleIconDiv" id="toggleIcon">
-            <i class="uil uil-ellipsis-h icon"></i>
-        </div>
-        <div class="accCart">
-            <div class="accDiv">
-                <i class="uil uil-user-circle icon  userIcon"></i>
-                <div class="plainName">TheAces</div>
+        <header class="header " id="header">
+            <div class="logoDiv">
+                <a href="#home"> <i class="uil uil-pagerduty icon logoIcon"></i></a>
+            </div>
+            <div class="navBar" id="navBar">
+                <ul class="navLists">
+                    <li class="navItem"><a href="/testaa" class="navLink">Home</a></li>
+                    <li class="nav-item dropdown" class="navItem">
+                        <a  style="color:white" class="nav-link dropdown-toggle" class="navLink" href="" id="navbarDropdown"
+                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Blog
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/comment/aycha"> Games</a>
+                            <a class="dropdown-item" href="/comment/voir">Tournoi</a>
+                            <a class="dropdown-item" href="/comment/produit">Product</a>
+                            <a class="dropdown-item" href="/comment/livreur">Deliverer</a>
+                            <a class="dropdown-item" href="/comment/aycha1">All Blogs</a>
+                        </div>
+                    </li>
+                    <li class="navItem"><a href="/tournoi/list" class="navLink">Our Event</a></li>
+                    <li class="navItem"><a href="{{ path('afficherElementFront') }}" class="navLink">Our Products</a></li>
+                    <li class="navItem"><a href="/offreElementFront" class="navLink">Offer</a></li>
+                </ul>
+                <div class="closeIconDiv" id="closeIcon">
+                    <i class="uil uil-times-circle icon closeIcon"></i>
+                </div>
 
             </div>
-            <div class="cartDiv" id="cartIcon">
-                <i class="uil uil-shopping-bag icon" ></i>
+            <div class="toggleIconDiv" id="toggleIcon">
+                <i class="uil uil-ellipsis-h icon"></i>
             </div>
+            <div class="accCart">
+                <div class="accDiv dropdown">
+                    <i class="uil uil-user-circle icon  userIcon dropbtn"></i>
+                    <div class="dropdown-content">
+                        <a href="/afficherrec">My Complaints</a>
+                    </div>
+                    <div class="plainName">TheAces</div>
 
-            <div class="themeIconDiv" id="themeIconDiv">
-                <i class="uil uil-sun icon"></i>
+                </div>
+                <div class="cartDiv" id="cartIcon">
+                    <i class="uil uil-shopping-bag icon" ></i>
+                </div>
+
+                <div class="themeIconDiv" id="themeIconDiv">
+                    <i class="uil uil-sun icon"></i>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
 <!-- ==================Main Section------============================== -->
     {% block content %}
@@ -562,7 +639,22 @@
 </div>
 
     {% block js %}
-    <script src="{{asset('Front/swiper-bundle.min.js')}}"></script>
+        <!-- Jquery JS-->
+        <script src="{{ asset('Back/vendor1/jquery/jquery.min.js' )}}"></script>
+        <!-- Vendor JS-->
+        <script src="{{ asset('Back/vendor1/select2/select2.min.js') }}"></script>
+        <script src="{{ asset('Back/vendor1/datepicker/moment.min.js') }}"></script>
+        <script src="{{ asset('Back/vendor1/datepicker/daterangepicker.js') }}"></script>
+
+        <!-- Main JS-->
+        <script src="{{ asset('Back/js1/global.js') }}"></script>
+        <script src="{{asset('Front/swiper-bundle.min.js')}}"></script>
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script src="{{asset('Front/main.js')}}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <script src="{{asset('Front/swiper-bundle.min.js')}}"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="{{asset('Front/main.js')}}"></script>
 

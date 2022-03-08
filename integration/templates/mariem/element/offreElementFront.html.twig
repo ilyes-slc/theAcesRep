@@ -1,0 +1,123 @@
+{% extends 'mariem/baseFront.html.twig' %}
+{% block title %} Offres {% endblock %}
+
+
+
+{% block body %}
+    <div class="browser section container" id="browser">
+        {% for promotiono in promotion %}
+            <div class="ItemCard grid browserOne">
+                <div class="cardText">
+                    <div class="cardPrice">
+                        <small> offre </small>
+                        {% set prixtotal=0  %}
+                        {% for element in promotiono.elements %}
+                            {% set prixtotal= prixtotal+element.prix  %}
+                        {% endfor %}
+                        <div class="price">
+                            <span class="previous" style="color: grey; margin-right: 25px"> <del> {{ prixtotal }}DT </del> </span>
+                            {% set newprix = prixtotal- ((prixtotal * promotiono.pourcentage) / 100) %} dinar
+
+                            {{ newprix }}
+                        </div>
+                    </div>
+                    <div class="itemNameDiv">
+                        <span class="name">{%  for element in promotiono.elements  %} {{ element.nom }} {% endfor %}  </span>
+
+                    </div>
+                </div>
+
+                <div class="itemImage">
+                    {%  for element in promotiono.elements  %}
+                        <img src="  {{ asset('uploads/images/'~element.image) }} " height="100px" width="250px"
+                             alt="Mice Image">
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+    <!-- xxxx -->
+
+    <!-- ===============Featured Items===================================== -->
+
+    <div class="featured section container" id="features">
+        <div class="sectionTop ">
+            <div class="introText ">
+                <h2 class="sectionTitle">
+                    Featured Gears
+                </h2>
+                <p> Here are some of the features items to enhace you gaming experience. You deserve great gear for
+                    unforgattable experience! </p>
+            </div>
+            <div class="cartButton">
+                <i class="uil uil-minus-circle icon"></i>
+                <span>Browse</span>
+            </div>
+        </div>
+
+        <div class="sectionBody swiper">
+            <div class="swiper-wrapper">
+                <div class="sectionItem swiper-slide">
+                    <div class="itemImageDiv">
+                        <img src="{{ asset('Front/Images/earpod.png') }}" alt="Image">
+                    </div>
+                    <div class="itemDetails">
+                        <span class="name">Earpod</span>
+                        <small>Wireless</small>
+                        <span class="itemPrice">$ 69.01</span>
+                    </div>
+                    <div class="cartButton" id="itemToCart">
+                        <i class="uil uil-plus-circle icon"></i>
+                        <span>Add To Cart</span>
+                    </div>
+                </div>
+                <div class="sectionItem swiper-slide">
+                    <div class="itemImageDiv">
+                        <img src="{{ asset('Front/Images/computer2.png') }}" alt="Image">
+                    </div>
+                    <div class="itemDetails">
+                        <span class="name">Laptop</span>
+                        <small>Gaming Laptop</small>
+                        <span class="itemPrice">$ 1,228</span>
+                    </div>
+                    <div class="cartButton" id="itemToCart">
+                        <i class="uil uil-plus-circle icon"></i>
+                        <span>Add To Cart</span>
+                    </div>
+                </div>
+                <div class="sectionItem swiper-slide">
+                    <div class="itemImageDiv">
+                        <img src="{{ asset('Front/Images/keyboard.png') }}" alt="Image">
+                    </div>
+                    <div class="itemDetails">
+                        <span class="name">Moucepad</span>
+                        <small>Smooth rubber</small>
+                        <span class="itemPrice">$ 19.31</span>
+                    </div>
+                    <div class="cartButton" id="itemToCart">
+                        <i class="uil uil-plus-circle icon"></i>
+                        <span>Add To Cart</span>
+                    </div>
+                </div>
+                <div class="sectionItem swiper-slide">
+                    <div class="itemImageDiv">
+                        <img src="{{ asset('Front/Images/gaming chair.png') }}" alt="Image">
+                    </div>
+                    <div class="itemDetails">
+                        <span class="name">Gaming Chair</span>
+                        <small>Extendable</small>
+                        <span class="itemPrice">$ 494.51</span>
+                    </div>
+                    <div class="cartButton" id="itemToCart">
+                        <i class="uil uil-plus-circle icon"></i>
+                        <span>Add To Cart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

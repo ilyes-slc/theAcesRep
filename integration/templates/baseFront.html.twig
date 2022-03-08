@@ -6,115 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Gaming Gear Website{% endblock %}</title>
     {% block css %}
-    <style>
-        .table-wrapper{
-            margin: 10px 70px 70px;
-            box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
-        }
-        
-        .fl-table {
-            border-radius: 5px;
-            font-size: 12px;
-            font-weight: normal;
-            border: none;
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 100%;
-            white-space: nowrap;
-            background-color: white;
-        }
-        
-        .fl-table td, .fl-table th {
-            text-align: center;
-            padding: 8px;
-        }
-        
-        .fl-table td {
-            border-right: 1px solid #f8f8f8;
-            font-size: 12px;
-        }
-        
-        .fl-table thead th {
-            color: #ffffff;
-            background: #4FC3A1;
-        }
-        
-        
-        .fl-table thead th:nth-child(odd) {
-            color: #ffffff;
-            background: #324960;
-        }
-        
-        .fl-table tr:nth-child(even) {
-            background: #F8F8F8;
-        }
-        
-        /* Responsive */
-        
-        @media (max-width: 767px) {
-            .fl-table {
-                display: block;
-                width: 100%;
-            }
-            .table-wrapper:before{
-                content: "Scroll horizontally >";
-                display: block;
-                text-align: right;
-                font-size: 11px;
-                color: white;
-                padding: 0 0 10px;
-            }
-            .fl-table thead, .fl-table tbody, .fl-table thead th {
-                display: block;
-            }
-            .fl-table thead th:last-child{
-                border-bottom: none;
-            }
-            .fl-table thead {
-                float: left;
-            }
-            .fl-table tbody {
-                width: auto;
-                position: relative;
-                overflow-x: auto;
-            }
-            .fl-table td, .fl-table th {
-                padding: 20px .625em .625em .625em;
-                height: 60px;
-                vertical-align: middle;
-                box-sizing: border-box;
-                overflow-x: hidden;
-                overflow-y: auto;
-                width: 120px;
-                font-size: 13px;
-                text-overflow: ellipsis;
-            }
-            .fl-table thead th {
-                text-align: left;
-                border-bottom: 1px solid #f7f7f9;
-            }
-            .fl-table tbody tr {
-                display: table-cell;
-            }
-            .fl-table tbody tr:nth-child(odd) {
-                background: none;
-            }
-            .fl-table tr:nth-child(even) {
-                background: transparent;
-            }
-            .fl-table tr td:nth-child(odd) {
-                background: #F8F8F8;
-                border-right: 1px solid #E6E4E4;
-            }
-            .fl-table tr td:nth-child(even) {
-                border-right: 1px solid #E6E4E4;
-            }
-            .fl-table tbody td {
-                display: block;
-                text-align: center;
-            }
-        }
-    </style>
+        <link rel="stylesheet" href="{{asset('aycha/Front/main.css')}} ">
+        <link rel="stylesheet" href="{{asset('https://unicons.iconscout.com/release/v4.0.0/css/line.css')}} ">
+        <link rel="stylesheet" href="{{asset('aycha/Front/swiper-bundle.min.css')}}">
+
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/bootstrap.min.css') }}">
+        <!-- animate CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/animate.css') }}">
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/owl.carousel.min.css') }}">
+        <!-- font awesome CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/all.css') }}">
+        <!-- flaticon CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/flaticon.css')}}">
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/themify-icons.css')}}">
+        <!-- font awesome CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/magnific-popup.css') }}/">
+        <!-- swiper CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/slick.css')}}">
+        <!-- style CSS -->
+        <link rel="stylesheet" href="{{ asset('aycha/Front/css1/style.css')}}">
+
     <style>
         .dropbtn {
           color: white;
@@ -123,12 +38,12 @@
           border: none;
           cursor: pointer;
         }
-        
+
         .dropdown {
           position: relative;
           display: inline-block;
         }
-        
+
         .dropdown-content {
           display: none;
           position: absolute;
@@ -137,25 +52,25 @@
           box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
           z-index: 1;
         }
-        
+
         .dropdown-content a {
           color: black;
           padding: 12px 16px;
           text-decoration: none;
           display: block;
         }
-        
+
         .dropdown-content a:hover {background-color: #f1f1f1}
-        
+
         .dropdown:hover .dropdown-content {
           display: block;
         }
-        
+
         .dropdown:hover .dropbtn {
-          
+
         }
         </style>
-        
+
     <style>
         fieldset {
             background-color : white;
@@ -167,17 +82,17 @@
           border-collapse: collapse;
           width: 100%;
         }
-        
+
         #customers td, #customers th {
           border: 1px solid #ddd;
           padding: 8px;
         }
-        
+
         #customers tr:nth-child(even){background-color: #f2f2f2;}
         #customers tr:nth-child(odd){background-color: #f2f2f2;}
-        
+
         #customers tr:hover {background-color: #ddd;}
-        
+
         #customers th {
           padding-top: 12px;
           padding-bottom: 12px;
@@ -187,16 +102,18 @@
         }
         </style>
 
+
+
         <!-- Icons font CSS-->
         <link href="{{ asset('Back/vendor1/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
         <link href="{{ asset('Back/vendor1/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
         <!-- Font special for pages-->
         <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    
+
         <!-- Vendor CSS-->
         <link href="{{ asset('Back/vendor1/select2/select2.min.css') }}" rel="stylesheet" media="all">
         <link href="{{ asset('Back/vendor1/datepicker/daterangepicker.css') }}" rel="stylesheet" media="all">
-    
+
         <!-- Main CSS-->
         <link href="{{ asset('Back/css1/main.css') }}" rel="stylesheet" media="all">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -208,41 +125,59 @@
 <body>
     {% block header %}
     <!-- ========================= Header Section -->
-    <header class="header " id="header">
-        <div class="logoDiv">
-           <a href="test"> <i class="uil uil-pagerduty icon logoIcon"></i></a>
-        </div>
-        <div class="navBar" id="navBar">
-            <ul class="navLists">
-                <li class="navItem"><a href="test" class="navLink">Home</a></li>
-            </ul>
-           <div class="closeIconDiv" id="closeIcon">
-            <i class="uil uil-times-circle icon closeIcon"></i>
-           </div>
-        </div>
-        <div class="toggleIconDiv" id="toggleIcon">
-            <i class="uil uil-ellipsis-h icon"></i>
-        </div>
-        <div class="accCart">
-            <div class="accDiv dropdown">
-                <i class="uil uil-user-circle icon  userIcon dropbtn"></i>
-                <div class="dropdown-content">
-                    <a href="afficher">My Complaints</a>
+        <header class="header " id="header">
+            <div class="logoDiv">
+                <a href="#home"> <i class="uil uil-pagerduty icon logoIcon"></i></a>
+            </div>
+            <div class="navBar" id="navBar">
+                <ul class="navLists">
+                    <li class="navItem"><a href="/testaa" class="navLink">Home</a></li>
+                    <li class="nav-item dropdown" class="navItem">
+                        <a  style="color:white" class="nav-link dropdown-toggle" class="navLink" href="" id="navbarDropdown"
+                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Blog
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/comment/aycha"> Games</a>
+                            <a class="dropdown-item" href="/comment/voir">Tournoi</a>
+                            <a class="dropdown-item" href="/comment/produit">Product</a>
+                            <a class="dropdown-item" href="/comment/livreur">Deliverer</a>
+                            <a class="dropdown-item" href="/comment/aycha1">All Blogs</a>
+                        </div>
+                    </li>
+                    <li class="navItem"><a href="/tournoi/list" class="navLink">Our Event</a></li>
+                    <li class="navItem"><a href="{{ path('afficherElementFront') }}" class="navLink">Our Products</a></li>
+                    <li class="navItem"><a href="/offreElementFront" class="navLink">Offer</a></li>
+                </ul>
+                <div class="closeIconDiv" id="closeIcon">
+                    <i class="uil uil-times-circle icon closeIcon"></i>
                 </div>
-                <div class="plainName">TheAces</div>
-             
-            </div>
-            <div class="cartDiv" id="cartIcon">
-                <i class="uil uil-shopping-bag icon" ></i>
-            </div>
 
-            <div class="themeIconDiv" id="themeIconDiv">
-                <i class="uil uil-sun icon"></i>
             </div>
-        </div>
-    </header>
+            <div class="toggleIconDiv" id="toggleIcon">
+                <i class="uil uil-ellipsis-h icon"></i>
+            </div>
+            <div class="accCart">
+                <div class="accDiv dropdown">
+                    <i class="uil uil-user-circle icon  userIcon dropbtn"></i>
+                    <div class="dropdown-content">
+                        <a href="/afficherrec">My Complaints</a>
+                    </div>
+                    <div class="plainName">TheAces</div>
+
+                </div>
+                <div class="cartDiv" id="cartIcon">
+                    <i class="uil uil-shopping-bag icon" ></i>
+                </div>
+
+                <div class="themeIconDiv" id="themeIconDiv">
+                    <i class="uil uil-sun icon"></i>
+                </div>
+            </div>
+        </header>
     {% endblock %}
-    
+
 <!-- ==================Main Section------============================== -->
     {% block content %}
     <div class="main" id="home">
@@ -284,7 +219,7 @@
                                 <span class="previous">$500</span>
                                 <span class="current">$245</span>
                             </div>
-    
+
                             <div class="cartButton">
                                 <i class="uil uil-plus-circle icon"></i>
                                 <span>Add To Cart</span>
@@ -292,10 +227,10 @@
                         </div>
                     </div>
                     <div class="bannerImageDiv">
-                        <img src="{{asset('Front/Images/beats.png')}}"" alt="Mouse image">
+                        <img src="{{asset('Front/Images/beats.png')}}"   alt="Mouse image">
                     </div>
                 </div>
-                
+
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -380,7 +315,7 @@
                 <img src="{{asset('Front/Images/keyboard2.png')}}" alt="Mice Image">
             </div>
         </div>
-        
+
     </div>
 
     <!-- ===============Featured Items===================================== -->
@@ -601,7 +536,7 @@
         <div class="cardText">
             <div class="cardPrice">
                 <small>Video test of gaming gears</small>
-              
+
             </div>
             <div class="itemNameDiv">
                 <span class="name">Gear Tests by ProGammers </span>
@@ -620,7 +555,7 @@
         <div class="cardText">
             <div class="cardPrice">
                 <small>Tricky tips in CS,GO and Dota 2</small>
-            
+
             </div>
             <div class="itemNameDiv">
                 <span class="name">Game Tips <br>Thanks to Pros</span>
@@ -695,8 +630,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
     <div class="footerBottomSection container">
       <small>Copyright &copy; TheAces 2022. All rights registered</small>
       <div class="footerLogo">
@@ -738,7 +673,7 @@
               </div>
 
             </div>
-            <button type="submit">CHECKOUT</button>
+            <button type="submit"><a class="nav-link" href="afficherLF">CHECKOUT</a></button>
         </form>
         </div>
         <div class="paymentFooter">
@@ -748,7 +683,7 @@
     </div>
     {% endblock %}
 
-    
+
 </div>
 
     {% block js %}

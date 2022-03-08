@@ -10,7 +10,7 @@ use Symfony\Component\Asset;
 class TestControllerAycha extends AbstractController
 {
     /**
-     * @Route("/test", name="test")
+     * @Route("/testaycha", name="testaycha")
      */
     public function index(): Response
     {

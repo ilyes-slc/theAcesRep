@@ -149,7 +149,7 @@ class BackController extends AbstractController
             $uploadedFile = $form['photoFile']->getData();
             $pathupload = $this->getParameter('kernel.project_dir').'/public/uploads/images';
             $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $newFilename = Urlizer::urlize($originalFilename).'.'.$uploadedFile->guessExtension();
             $uploadedFile->move(
                 $pathupload,
                 $newFilename

@@ -63,7 +63,7 @@ class Tournoi
     private $nbparticipant;
 
     /**
-     * @Assert\NotBlank
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $image;

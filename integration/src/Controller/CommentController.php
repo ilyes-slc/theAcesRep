@@ -183,7 +183,7 @@ class CommentController extends AbstractController
             return $this->redirectToRoute('comment_index', array('id'=>$commentaire->getArticle()->getId()), Response::HTTP_SEE_OTHER);
         } //array pour fonction paramétrée
 
-        return $this->render('aycha/comment/edit.html.twig', [
+        return $this->render('aycha/blog/testautre.html.twig', [
             'commentaire' => $commentaire,
             'form' => $form->createView(),
 

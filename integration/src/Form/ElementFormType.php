@@ -33,9 +33,9 @@ class ElementFormType extends AbstractType
 
             // 'etat => new sfValidatorChoice(array('choices' => array_keys(self::$subjects)))
             ->add('quantite')// 'quantite' => new sfValidatorString(array('required' => min_length' => 4)))
-        ->add('image', FileType::class, [
-        'mapped' => false
-    ] )
+            ->add('image', FileType::class, [
+                'mapped' => false
+            ] )
             ->add('save' , SubmitType::class ,['label' => 'Confirmer']);
         ;
     }

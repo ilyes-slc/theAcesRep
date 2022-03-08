@@ -26,12 +26,13 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("post:read")
+     *
      */
     private $titre;
 
     /**
      * @ORM\Column(type="text", length=255, nullable=true)
-     * @Assert\NotBlank(message="You forgot to write your article ")
+     * @Assert\NotBlank(message="You forgot to fill the field")
      * @Groups("post:read")
      */
     private $contenu;

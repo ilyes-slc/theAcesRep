@@ -30,6 +30,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Serializer;
+use Knp\Component\Pager\PaginatorInterface;
 
 
 class ElementController extends AbstractController
@@ -43,11 +44,11 @@ class ElementController extends AbstractController
         return $this->render('mariem/element/index.html.twig', [
             'controller_name' => 'ElementController',
         ]);
-       /* public function index()
-    {$Element=$this->getDoctrine()->getRepository(Element::class)->findAll();
-        return $this->render('element/index.html.twig', [
-            'controller_name' => 'ElementController',
-        ]);*/
+        /* public function index()
+     {$Element=$this->getDoctrine()->getRepository(Element::class)->findAll();
+         return $this->render('element/index.html.twig', [
+             'controller_name' => 'ElementController',
+         ]);*/
     }
 
     /**
@@ -62,7 +63,7 @@ class ElementController extends AbstractController
     {
         $Element = new Element();
 
-       // $response = new QrCodeResponse($result);
+        // $response = new QrCodeResponse($result);
         $formClassroom = $this->createForm(ElementFormType::class, $Element);
         $formClassroom->handleRequest($req);
         if (($formClassroom->isSubmitted()) && ($formClassroom->isValid()))
@@ -87,7 +88,7 @@ class ElementController extends AbstractController
         return $this->render('mariem/element/AjouterElement.twig', ['Element' => $formClassroom->createView()]);
 
 
-        }
+    }
 
     /**
      * @Route("/front/{id}/element", name="element_showFront", methods={"GET"})
@@ -105,12 +106,17 @@ class ElementController extends AbstractController
     /**
      * @Route("/afficherElement", name="afficherElement")
      */
-    public function AfficherElement()
+    public function AfficherElement(PaginatorInterface $paginator, Request $request,)
     {
         $repo = $this->getDoctrine()->getRepository(Element::class);
-        $element = $repo->findAll();
+        $element2 = $repo->findAll();
+        $element = $paginator->paginate(
+            $element2, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            2 // Nombre de résultats par page
+        );
         return $this->render('mariem/element/AfficherElement.twig', ["element" => $element]);
-        }
+    }
 
     /**
      * @Route("/supprimerElement/{id}", name="e_supprimer")
@@ -156,10 +162,10 @@ class ElementController extends AbstractController
     }
 
 
-/*
-    /**
-     * @Route("/mobile/add", name="add_element")
-     */
+    /*
+        /**
+         * @Route("/mobile/add", name="add_element")
+         */
     /*
     public function addElement(Request $request){
 

@@ -6,9 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Gaming Gear Website{% endblock %}</title>
 
-        <link rel="stylesheet" href="{{ asset('Front/main.css') }} ">
-        <link rel="stylesheet" href="{{ asset('https://unicons.iconscout.com/release/v4.0.0/css/line.css') }} ">
-        <link rel="stylesheet" href="{{ asset('Front/swiper-bundle.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('Front/main.css') }} ">
+    <link rel="stylesheet" href="{{ asset('https://unicons.iconscout.com/release/v4.0.0/css/line.css') }} ">
+    <link rel="stylesheet" href="{{ asset('Front/swiper-bundle.min.css') }}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/bootstrap.min.css') }}">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/animate.css') }}">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/owl.carousel.min.css') }}">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/all.css') }}">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/flaticon.css')}}">
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/themify-icons.css')}}">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/magnific-popup.css') }}/">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/slick.css')}}">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{{ asset('aycha/Front/css1/style.css')}}">
 
 
 
@@ -22,14 +41,29 @@
     </div>
     <div class="navBar" id="navBar">
         <ul class="navLists">
-            <li class="navItem"><a href="{{ path('afficherElementFront') }}" class="navLink">afficher element</a></li>
-            <li class="navItem"><a href="#features" class="navLink">Features</a></li>
-            <li class="navItem"><a href="#newgear" class="navLink">New Arrival</a></li>
-            <li class="navItem"><a href="#test" class="navLink">ProGammers</a></li>
+            <li class="navItem"><a href="testaa" class="navLink">Home</a></li>
+            <li class="nav-item dropdown" class="navItem">
+                <a  style="color:white" class="nav-link dropdown-toggle" class="navLink" href="" id="navbarDropdown"
+                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Blog
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/comment/aycha"> Games</a>
+                    <a class="dropdown-item" href="/comment/voir">Tournoi</a>
+                    <a class="dropdown-item" href="/comment/produit">Product</a>
+                    <a class="dropdown-item" href="/comment/livreur">Deliverer</a>
+                    <a class="dropdown-item" href="/comment/aycha1">All Blogs</a>
+                </div>
+            </li>
+            <li class="navItem"><a href="/tournoi/list" class="navLink">Our Event</a></li>
+            <li class="navItem"><a href="{{ path('afficherElementFront') }}" class="navLink">Our Products</a></li>
+            <li class="navItem"><a href="/offreElementFront" class="navLink">Offer</a></li>
         </ul>
         <div class="closeIconDiv" id="closeIcon">
             <i class="uil uil-times-circle icon closeIcon"></i>
         </div>
+
     </div>
     <div class="toggleIconDiv" id="toggleIcon">
         <i class="uil uil-ellipsis-h icon"></i>
@@ -549,7 +583,7 @@
                             </div>
 
                         </div>
-                        <button type="submit">CHECKOUT</button>
+                        <button type="submit"><a class="nav-link" href="afficherLF">CHECKOUT</a></button>
                     </form>
                 </div>
                 <div class="paymentFooter">

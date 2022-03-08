@@ -42,26 +42,33 @@ class PromotionController extends AbstractController
 
         if (($formClassroom->isSubmitted()) && ($formClassroom->isValid()))
         {
-            $test=$Promotion->getIdprod()->getNom();
+            // $test=$Promotion->getIdprod();
+            //$aa=$this->getDoctrine()->getRepository(Element::class)->findOneBy(['nom'=>"testt1"]);
+            // $vv= $formClassroom->get
+            $vv=$Promotion->getElements();
+            foreach ($vv as $mm){
+                $mm->setPromotion($Promotion);
+                $manager2 = $this->getDoctrine()->getManager();
+                $manager2->persist($mm);
+                $manager2->flush();
+            }
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($Promotion);
+            $p=$Promotion->getPourcentage();
             $manager->flush();
             $users=$this->getDoctrine()->getRepository(User::class)->findAll();
 
-        foreach ($users as $user){
-            $message = (new \Swift_Message('THE ACES'))
-                ->setFrom('mariem.karoui@esprit.tn')
-                ->setContentType("text/html")
-                ->setTo($user->getMail())
-                ->setBody("<p style='color: black;'> Nouvelle promotion. Produit:  </p> <strong style='color:red;'>$test</strong> ");
-            $mailer->send($message) ;
-        }
-
-
+            foreach ($users as $user){
+                $message = (new \Swift_Message('THE ACES'))
+                    ->setFrom('mariem.karoui@esprit.tn')
+                    ->setContentType("text/html")
+                    ->setTo($user->getMail())
+                    ->setBody("<p style='color: black;'> Nouvelle promotion. a :  </p> <strong style='color:red;'> $p </strong> ");
+                $mailer->send($message) ;
+            }
             return $this->redirectToRoute('afficherPromotion');
         }
         return $this->render('mariem/promotion/AjouterPromotion.twig', ['Promotion' => $formClassroom->createView()]);
-
     }
     /**
      * @Route("/afficherPromotion", name="afficherPromotion")
@@ -70,6 +77,7 @@ class PromotionController extends AbstractController
     {
         $repo = $this->getDoctrine()->getRepository(Promotion::class);
         $Promotion = $repo->findAll();
+
         return $this->render('mariem/promotion/AfficherPromotion.twig', ["Promotion" => $Promotion]);
     }
     /**
@@ -101,5 +109,15 @@ class PromotionController extends AbstractController
         return $this->render('mariem/promotion/AjouterPromotion.twig', [
             'Promotion'=>$form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/offreElementFront", name="offreElementFront")
+     */
+    public function AfficherOffreElementFront()
+    {
+        $repo = $this->getDoctrine()->getRepository(Promotion::class);
+        $promotion = $repo->findAll();
+        return $this->render('mariem/element/offreElementFront.html.twig', ["promotion" => $promotion]);
     }
 }

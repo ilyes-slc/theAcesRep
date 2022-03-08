@@ -1,5 +1,3 @@
-
-
 {% extends 'mariem/baseBack.html.twig' %}
 
 {% block title %}Ajouter Promotion{% endblock %}
@@ -11,8 +9,8 @@
         <div class="col-lg-8 col-md-8 col-sm-8">
             <fieldset >
                 <h4>Prouit</h4>
-                {{ form_errors(Promotion.idprod,{'attr': {'class':'text-danger'}} ) }}
-                {{ form_widget(Promotion.idprod,{'attr': {'class': 'form-control' , 'placeholder' : 'idprod'}}) }}
+                {{ form_errors(Promotion.elements,{'attr': {'class':'text-danger'}} ) }}
+                {{ form_widget(Promotion.elements,{'attr': {'class': 'form-control' , 'placeholder' : 'idprod'}}) }}
             </fieldset>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8">
@@ -39,4 +37,3 @@
     {{ form_end(Promotion) }}
 
 {% endblock %}
-

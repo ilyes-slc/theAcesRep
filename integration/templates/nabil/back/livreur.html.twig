@@ -1,97 +1,101 @@
 {% extends "nabil/back/baseBack.html.twig" %}
 {% block content %}
-<div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Liste Des Livreurs</h1>
-                       
-                       
-                      
- 
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>CIN</th>
-                                            <th>Nom</th>
-                                            <th>Prenom</th>
-                                            <th>Date de naissance</th>
-                                            <th>Note</th>
-                                            <th>Image</th>
-                                             <th>Zone</th>
-                                             <th>tel</th>
-                                            <th>Actions</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                   
-                                    <tbody>
-                                                                    {% for l in livreur %}
-                                    <tr>
-                                    <td>{{ l.cin }}</td>
-                                    <td>{{ l.name }}</td>
-                                    <td>{{ l.prenom }}</td>
-                                    <td> {{ l.dateNaissance|date('d-m-Y') }}</td>
-                                    <td>{{ l.rating }}</td>
-                                    <td><img id="img"  class="card-img-top img-fluid" width="20" src="/nabil/uploads/{{l.image}}"></td>
-                                    <td>{{ l.zone }}</td>
-                                    <td>{{ l.tel }}</td>
-            <td>
-                                           
-                                           
-                                             <button type="button" class="fa fa-trash" data-toggle="modal" data-target="#exampleModal"> </button>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Liste Des Livreurs</h1>
 
 
 
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Suppression</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                <table id="datatablesSimple">
+                    <thead>
+                    <tr>
+                        <th>CIN</th>
+                        <th>Nom</th>
+                        <th>Prenom</th>
+                        <th>Date de naissance</th>
+                        <th>Note</th>
+                        <th>Image</th>
+                        <th>Zone</th>
+                        <th>tel</th>
+                        <th>Actions</th>
+                        <th>detail</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for l in livreur %}
+                    <tr>
+                        <td>{{ l.cin }}</td>
+                        <td>{{ l.name }}</td>
+                        <td>{{ l.prenom }}</td>
+                        <td> {{ l.dateNaissance|date('d-m-Y') }}</td>
+                        <td>{{ l.rating }}</td>
+                        <td><img id="img"  class="card-img-top img-fluid" width="20" src="/nabil/uploads/{{l.image}}"></td>
+                        <td>{{ l.zone }}</td>
+                        <td>{{ l.tel }}</td>
+                        <td> <a href="{{ path('detail',{'cin':l.cin}) }}">detail</a></td>
+                        <td>
+
+
+                            <button type="button" class="fa fa-trash" data-toggle="modal" data-target="#exampleModal"> </button>
+
+
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Suppression</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Vous voulez vraiment supprimer {{ l.prenom }} ?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <a href="{{ path('supprimeraaaa',{'cin':l.cin}) }}"><i class="fa fa-trash"  style="color:#ff5b5b;font-size:20px"></i> </a>
-                                            </div>
-                                            </div>
+                                            </button>
                                         </div>
+                                        <div class="modal-body">
+                                            Vous voulez vraiment supprimer {{ l.prenom }} ?
                                         </div>
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="{{ l.cin }}exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            ...
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                        </td>
-     <td> <a href="{{ path('modifier',{'cin':l.cin}) }}"><i class="fa fa-pencil" style="color:#00aff0;font-size:20px"></a></td>
-             {% endfor %}
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable"><a href="{{ path('ajouter') }}">Ajouter</a></button>
-
-                                    </tbody>
-                                </table>
-                  {{ knp_pagination_render(livreur) }}
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <a href="{{ path('supprimeraaaa',{'cin':l.cin}) }}"><i class="fa fa-trash"  style="color:#ff5b5b;font-size:20px"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                              </div>
-                    </div>
-                </main>
-                
- {% endblock %}
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="{{ l.cin }}exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td> <a href="{{ path('modifier',{'cin':l.cin}) }}"><i class="fa fa-pencil" style="color:#00aff0;font-size:20px"></a></td>
+
+                        {% endfor %}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalScrollable"><a href="{{ path('ajouterli') }}">Ajouter</a></button>
+
+                    </tbody>
+                </table>
+                {{ knp_pagination_render(livreur) }}
+            </div>
+    </div>
+    </div>
+    </main>
+
+{% endblock %}
+

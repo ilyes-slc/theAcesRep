@@ -34,6 +34,11 @@
 
     {% endblock %}
     <style>
+        .body {
+            background-color: #23232f;
+        }
+    </style>
+    <style>
         button {
             color:white;
         }
@@ -45,30 +50,45 @@
 </head>
 
 {% block body %}
-<b>
+<body class="body">
 <header class="header " id="header">
     <div class="logoDiv">
         <a href="#home"> <i class="uil uil-pagerduty icon logoIcon"></i></a>
     </div>
     <div class="navBar" id="navBar">
         <ul class="navLists">
-            <li class="navItem"><a href="#browser" class="navLink">Gears</a></li>
-            <li class="navItem"><a href="#features" class="navLink">Features</a></li>
-            <li class="navItem"><a href="#newgear" class="navLink">New Arrival</a></li>
-            <li class="navItem"><a href="#test" class="navLink">ProGammers</a></li>
-            <li class="navItem"><a href="blog" class="navLink">Our Blog</a></li>
-            <li class="navItem"><a href="tournoi" class="navLink">Our Tournament</a></li>
+            <li class="navItem"><a href="/testaa" class="navLink">Home</a></li>
+            <li class="nav-item dropdown" class="navItem">
+                <a  style="color:white" class="nav-link dropdown-toggle" class="navLink" href="" id="navbarDropdown"
+                    role="button" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Blog
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/comment/aycha"> Games</a>
+                    <a class="dropdown-item" href="/comment/voir">Tournoi</a>
+                    <a class="dropdown-item" href="/comment/produit">Product</a>
+                    <a class="dropdown-item" href="/comment/livreur">Deliverer</a>
+                    <a class="dropdown-item" href="/comment/aycha1">All Blogs</a>
+                </div>
+            </li>
+            <li class="navItem"><a href="/tournoi/list" class="navLink">Our Event</a></li>
+            <li class="navItem"><a href="{{ path('afficherElementFront') }}" class="navLink">Our Products</a></li>
         </ul>
         <div class="closeIconDiv" id="closeIcon">
             <i class="uil uil-times-circle icon closeIcon"></i>
         </div>
+
     </div>
     <div class="toggleIconDiv" id="toggleIcon">
         <i class="uil uil-ellipsis-h icon"></i>
     </div>
     <div class="accCart">
-        <div class="accDiv">
-            <i class="uil uil-user-circle icon  userIcon"></i>
+        <div class="accDiv dropdown">
+            <i class="uil uil-user-circle icon  userIcon dropbtn"></i>
+            <div class="dropdown-content">
+                <a href="/afficherrec">My Complaints</a>
+            </div>
             <div class="plainName">TheAces</div>
 
         </div>
@@ -100,7 +120,7 @@
           {% for tournoi in tournois %}
             <article class="blog__post">
                 <div class="blog__post-thumbnail">
-                    <img src="{{ asset('uploads/image/' ~ tournoi.image) }}" height="300px" width="400px" alt="Man viewing work plans">
+                    <img src="{{ asset('amal/uploads/image/'~tournoi.image~'.jpg') }}" height="300px" width="400px" alt="Man viewing work plans">
                 </div>
                 <div class="blog__post-excerpt">
                     <h3>{{ tournoi.name }}</h3>

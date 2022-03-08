@@ -21,7 +21,11 @@
                     <td>{{ element.dateDebut|date('Y-m-d') }}</td>
                     <td>{{ element.dateFin|date('Y-m-d') }}</td>
                     <td>{{ element.pourcentage }}</td>
-                    <td>{{ element.idprod.nom }}</td>
+                    <td>
+                        {% for promotionn in element.elements %}
+                            {{ promotionn.nom }}
+                        {% endfor %}
+                    </td>
                     <td><a href="{{ path('modifierPromotion',{'id':element.id}) }}"> modifier </a></td>
                     <td><a href="{{ path('supprimer',{'id':element.id}) }}"> Supprimer </a></td>
                 </tr>
@@ -30,4 +34,3 @@
         </table>
     </div>
 {% endblock %}
-

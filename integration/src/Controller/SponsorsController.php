@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Gedmo\Sluggable\Util\Urlizer;
 
 /**
  * @Route("/sponsors")
@@ -43,15 +44,16 @@ class SponsorsController extends AbstractController
         // this condition is needed because the 'brochure' field is not required
         // so the PDF file must be processed only when a file is uploaded
         if ( $form->isSubmitted() && $form->isValid()) {
-            $file=$form->get('logo')->getData();
-            $fileName=md5(uniqid()).'.'.$file->guessExtension();
-            try{
-                $file->move($this->getParameter('brochures_directory'),$fileName);
-            }catch(FileException $e){
+            $uploadedFile = $form['logo']->getData();
+            $pathupload = $this->getParameter('kernel.project_dir').'/public/uploads/images';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $pathupload,
+                $newFilename
+            );
 
-            }
-
-            $sponsor->setLogo($fileName);
+            $sponsor->setLogo($originalFilename);
             $entityManager->persist( $sponsor);
             $entityManager->flush();
             // updates the 'brochureFilename' property to store the PDF file name

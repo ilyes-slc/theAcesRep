@@ -2,6 +2,7 @@
 
 {% block content %}
     <style>
+    li{color:deeppink;}
         label{
             color:white;
         }
@@ -437,7 +438,7 @@ a {
 
                                                 {{ form_start(form ,{'attr': {'novalidate': 'novalidate'}} )}}
 
-                                                <textarea class="form-control" rows="4"{{ form_widget(form.contenu) }}></textarea>
+                                                <textarea class="form-control" rows="4"{{ form_widget(form.contenu) }} {{ form_errors(form.contenu) }} > </textarea>
                                                 <br>
                                                 <button   href="{{ path('comment_new1', {'id': afficherx.id})}}" style ="color:white" class="btn">{{ button_label|default('Save') }}</button>
                                                 {{ form_end(form) }}

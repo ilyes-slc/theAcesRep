@@ -43,10 +43,7 @@
         </div>
         <div class="navBar" id="navBar">
             <ul class="navLists">
-                <li class="navItem"><a href="#browser" class="navLink">Gears</a></li>
-                <li class="navItem"><a href="#features" class="navLink">Features</a></li>
-                <li class="navItem"><a href="#newgear" class="navLink">New Arrival</a></li>
-                <li class="navItem"><a href="#test" class="navLink">ProGammers</a></li>
+                <li class="navItem"><a href="/testaa" class="navLink">Home</a></li>
                 <li class="nav-item dropdown" class="navItem">
                     <a  style="color:white" class="nav-link dropdown-toggle" class="navLink" href="" id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -61,19 +58,26 @@
                         <a class="dropdown-item" href="/comment/aycha1">All Blogs</a>
                     </div>
                 </li>
+                <li class="navItem"><a href="/tournoi/list" class="navLink">Our Event</a></li>
+                <li class="navItem"><a href="{{ path('afficherElementFront') }}" class="navLink">Our Products</a></li>
+                <li class="navItem"><a href="/offreElementFront" class="navLink">Offer</a></li>
             </ul>
-           <div class="closeIconDiv" id="closeIcon">
-            <i class="uil uil-times-circle icon closeIcon"></i>
-           </div>
+            <div class="closeIconDiv" id="closeIcon">
+                <i class="uil uil-times-circle icon closeIcon"></i>
+            </div>
+
         </div>
         <div class="toggleIconDiv" id="toggleIcon">
             <i class="uil uil-ellipsis-h icon"></i>
         </div>
         <div class="accCart">
-            <div class="accDiv">
-                <i class="uil uil-user-circle icon  userIcon"></i>
+            <div class="accDiv dropdown">
+                <i class="uil uil-user-circle icon  userIcon dropbtn"></i>
+                <div class="dropdown-content">
+                    <a href="/afficherrec">My Complaints</a>
+                </div>
                 <div class="plainName">TheAces</div>
-             
+
             </div>
             <div class="cartDiv" id="cartIcon">
                 <i class="uil uil-shopping-bag icon" ></i>
@@ -580,7 +584,7 @@
               </div>
 
             </div>
-            <button type="submit">CHECKOUT</button>
+            <button type="submit"><a class="nav-link" href="/afficherLF">CHECKOUT</a></button>
         </form>
         </div>
         <div class="paymentFooter">
@@ -593,10 +597,18 @@
 </div>
 
     {% block js %}
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!-- carousel -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
+
     <script src="{{asset('aycha/Front/swiper-bundle.min.js')}}"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="{{asset('aycha/Front/main.js')}}"></script>
-        <script type='text/javascript' src='{{ asset('aycha/Front/js4/jquery.js') }}"></script>
+        <script type='text/javascript' src='{{ asset('aycha/Front/js4/jquery.js') }}'></script>
         <script type='text/javascript' src='{{ asset('aycha/Front/js4/jquery.simplemodal.js') }}"></script>
         <script type='text/javascript' src='{{ asset('aycha/Front/js4/basic.js') }}"></script>
         <script>

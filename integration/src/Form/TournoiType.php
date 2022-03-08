@@ -44,10 +44,8 @@ class TournoiType extends AbstractType
                 'attr' => ['class' => 'form-control' , 'placeholder' => '',
                     ]
             ])
-            ->add('image',FileType::class,[
-                'data_class' => null,
-                'attr' => ['class' => 'form-control' 
-                    ]
+            ->add('photoFile', FileType::class, [
+                'mapped' => false
             ])
         ;
     }

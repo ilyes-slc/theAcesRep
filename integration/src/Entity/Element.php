@@ -28,13 +28,6 @@ class Element
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Promotion::class, mappedBy="idprod")
-     * @JoinColumn(onDelete="CASCADE")
-     * @Groups("Element")
-     */
-    private $promotions;
-
-    /**
      * @var string
      * @Assert\NotNull
      * @ORM\Column(name="type", type="string", length=10, nullable=false)
@@ -100,6 +93,12 @@ class Element
      * @Groups("Element")
      */
     private $quantite;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Promotion::class, inversedBy="elements",cascade={"persist"})
+     */
+    private $promotion;
+
 
     public function getId(): ?int
     {
@@ -205,32 +204,15 @@ class Element
         return $this->getNom();
     }
 
-    /**
-     * @return Collection|promotion[]
-     */
-    public function getpromotions(): Collection
+    public function getPromotion(): ?Promotion
     {
-        return $this->promotions;
+        return $this->promotion;
     }
 
-    public function addpromotion(promotion $promotion): self
+    public function setPromotion(?Promotion $promotion): self
     {
-        if (!$this->promotions->contains($promotion)) {
-            $this->promotions[] = $promotion;
-            $promotion->setIdprod($this);
-        }
+        $this->promotion = $promotion;
 
-        return $this;
-    }
-
-    public function removepromotion(promotion $promotion): self
-    {
-        if ($this->promotions->removeElement($promotion)) {
-            // set the owning side to null (unless already changed)
-            if ($promotion->getIdprod() === $this) {
-                $promotion->setIdprod(null);
-            }
-        }
         return $this;
     }
 

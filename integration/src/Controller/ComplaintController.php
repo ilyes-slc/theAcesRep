@@ -31,7 +31,7 @@ class ComplaintController extends AbstractController
     }
 
     /**
-     * @Route("/ajouter", name="ajouter")
+     * @Route("/ajouterrec", name="ajouterrec")
      */
     public function add(Request $req): Response
     {
@@ -70,7 +70,7 @@ class ComplaintController extends AbstractController
             $manager->persist($Client);
             $Reclamation->setIdclient($Client);
             $manager->flush();
-            return $this->redirectToRoute('afficher');
+            return $this->redirectToRoute('afficherrec');
         }
         return $this->render('complaint/index.html.twig', [
             'ajouterForm' => $formClassroom->createView(),
@@ -137,7 +137,7 @@ class ComplaintController extends AbstractController
 
 
     /**
-     * @Route("/afficher", name="afficher")
+     * @Route("/afficherrec", name="afficherrec")
      */
     public function show(ReclamationRepository $rep): Response
     {
@@ -148,7 +148,7 @@ class ComplaintController extends AbstractController
     }
 
     /**
-     * @Route("/supprimer/{id}", name="supprimer")
+     * @Route("/supprimerrec/{id}", name="supprimerrec")
      */
     public function supprimer($id, ReclamationRepository $Rep): Response
     {
@@ -160,7 +160,7 @@ class ComplaintController extends AbstractController
     }
 
     /**
-     * @Route("/supprimer2/{id}", name="supprimer2")
+     * @Route("/supprimerrec2/{id}", name="supprimerrec2")
      */
     public function supprimer2($id, ReclamationRepository $Rep): Response
     {
@@ -172,7 +172,7 @@ class ComplaintController extends AbstractController
     }
 
     /**
-     * @Route("/modifier/{id}", name="modifier")
+     * @Route("/modifierrec/{id}", name="modifierrec")
      */
     public function update(int $id, Request $request, ReclamationRepository $Rep): Response
     {
@@ -182,7 +182,7 @@ class ComplaintController extends AbstractController
         if (($form->isSubmitted()) && ($form->isValid())) {
             $manager = $this->getDoctrine()->getManager();
             $manager->flush();
-            return $this->redirectToRoute('afficher');
+            return $this->redirectToRoute('afficherrec');
         }
         return $this->render('complaint/modifier.html.twig', [
             'form' => $form->createView(),
@@ -190,7 +190,7 @@ class ComplaintController extends AbstractController
     }
 
     /**
-     * @Route("/modifier2/{id}", name="modifier2")
+     * @Route("/modifierrec2/{id}", name="modifierrec2")
      */
     public function update2(int $id, Request $request, ReclamationRepository $Rep): Response
     {
