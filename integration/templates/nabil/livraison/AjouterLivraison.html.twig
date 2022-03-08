@@ -30,6 +30,7 @@
             </style>
 
 
+<<<<<<< HEAD
             <div class="column"> NOM: {{ l.name }} </div>
             <div class="column">   prenom :  {{ l.prenom }}  </div>
             <div class="column">  note : {{ l.rating }}  </div>
@@ -86,6 +87,37 @@
                                             } else {
                                                 entitySelector.append('<li class="errorLi">'+value+'</li>');
                                             }
+=======
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var searchRequest = null;
+        $("#search").keyup(function() {
+            var minlength = 3;
+            var that = this;
+            var value = $(this).val();
+            var entitySelector = $("#entitiesNav").html('');
+            if (value.length >= minlength ) {
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = $.ajax({
+                    type: "GET",
+                    url: "{{ path('ajax_search') }}",
+                    data: {
+                        'q' : value
+                    },
+                    dataType: "text",
+                    success: function(msg){
+                        //we need to check if the value is the same
+                        if (value==$(that).val()) {
+                            var result = JSON.parse(msg);
+                            $.each(result, function(key, arr) {
+                                $.each(arr, function(id, value) {
+                                    if (key == 'Livreur') {
+                                        if (id != 'error') {
+                                            entitySelector.append('<li><b>' + value[0] + '</b><a href="/list/' + id + '">' + '<img src="/nabil/uploads/' + value[1] + '" style="width: 50px; height: 50px"/>' + '</a></li>');
+                                        } else {
+                                            entitySelector.append('<li class="errorLi">'+value+'</li>');
+>>>>>>> 7deaab7f18e24151db3f68d940142e0ecf6b5a2a
                                         }
                                     });
                                 });
