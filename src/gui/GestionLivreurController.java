@@ -165,23 +165,13 @@ public class GestionLivreurController implements Initializable {
             return row;
         });
 
-        servLiv = new ServiceLivreur();
-
-        ObservableList<String> catNames = FXCollections
-                .observableArrayList(
-                        servLiv.recuperer().stream().map(c -> c.getName()).collect(Collectors.toList())
-                );
-        
-        System.out.println(catNames);
-
-        //combCat.setItems(catNames);
+       
     }
     
     @FXML
     private void returnb(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-            Parent root = loader.load();
+         try {
+            Parent root = FXMLLoader.load(getClass().getResource("GestLivraison.fxml"));
             retour.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

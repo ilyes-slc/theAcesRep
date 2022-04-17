@@ -38,6 +38,7 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 
 import Services.ServiceLivraison;
+import Services.ServiceLivreur;
 import java.sql.Date;
 import javafx.scene.control.DatePicker;
 
@@ -54,8 +55,6 @@ public class GestionLivraisonController implements Initializable {
     @FXML
     private TableView<Livraison> tblLiv;
 
-    @FXML
-    private TableColumn<Livraison, Integer> tbId;
 
     @FXML
     private TableColumn<Livraison, String> tbMethod;
@@ -81,8 +80,8 @@ public class GestionLivraisonController implements Initializable {
     @FXML
     private TextField tfMethod;
 
-    @FXML
-    private TextField tfCinLivreur;
+      @FXML
+    private ComboBox<Integer> tfCinLivreur;
 
     @FXML
     private TextField tfIdClient;
@@ -123,7 +122,7 @@ public class GestionLivraisonController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
          list = FXCollections.observableArrayList(sl.recuperer());
-         tbId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        
         tbMethod.setCellValueFactory(new PropertyValueFactory<>("method"));
         tbCinLiv.setCellValueFactory(new PropertyValueFactory<>("cinLivreur"));
         tbIdClient.setCellValueFactory(new PropertyValueFactory<>("idClient"));
@@ -131,7 +130,7 @@ public class GestionLivraisonController implements Initializable {
         tbAdresse.setCellValueFactory(new PropertyValueFactory<>("adresseclient"));
          tbEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         
-         
+        ServiceLivreur s=new ServiceLivreur();
        
        
 
@@ -146,7 +145,7 @@ public class GestionLivraisonController implements Initializable {
                 if (!row.isEmpty()) {
                     final Livraison selectedItem = tblLiv.getSelectionModel().getSelectedItem();
                     tfMethod.setText(selectedItem.getMethod());
-                    tfCinLivreur.setText(""+selectedItem.getCinLivreur());
+                  
                    tfIdClient.setText(""+selectedItem.getIdClient());
                    
                    tfIdProd.setText(""+selectedItem.getIdProd());
@@ -166,36 +165,36 @@ public class GestionLivraisonController implements Initializable {
 
         servLiv = new ServiceLivraison();
 
-        ObservableList<String> catNames = FXCollections
+        ObservableList<Integer> cin = FXCollections
                 .observableArrayList(
-                        servLiv.recuperer().stream().map(c -> c.getMethod()).collect(Collectors.toList())
+                        s.recuperer().stream().map(c -> c.getCin()).collect(Collectors.toList())
                 );
         
-        System.out.println(catNames);
+        System.out.println(cin);
 
-        //combCat.setItems(catNames);
+        tfCinLivreur.setItems(cin);
     }
     
     @FXML
     private void returnb(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
-            Parent root = loader.load();
+            Parent root = FXMLLoader.load(getClass().getResource("GestLivreur.fxml"));
             retour.getScene().setRoot(root);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+   
     }
     
     @FXML
     private void AddP(ActionEvent event) {
 
     //  final int cin = servCat.getIdByCategoryName(combCat.getValue());
-        if (tfCinLivreur.getText().isEmpty()){
+        if (tfMethod.getText().isEmpty()){
         error.setText("Verifier les entrées s'il vous plait");}
        else
         {// FIXME: change the id user from 1 to the current logged in user.
-        sl.ajouter(new Livraison(tfMethod.getText(),Integer.parseInt(tfCinLivreur.getText()), Integer.parseInt(tfIdClient.getText()),Integer.parseInt(tfIdProd.getText()),tfAdresse.getText(),tfEtat.getText()));
+        sl.ajouter(new Livraison(tfMethod.getText(),(tfCinLivreur.getValue()), Integer.parseInt(tfIdClient.getText()),Integer.parseInt(tfIdProd.getText()),tfAdresse.getText(),tfEtat.getText()));
         tblLiv.setItems(FXCollections.observableArrayList(sl.recuperer()));
        Alert alert = new Alert(AlertType.INFORMATION);
 alert.setTitle("Livraison added");
@@ -224,7 +223,7 @@ alert.setContentText("Livraison added succesfuuly!");
         final Livraison selectedItem = tblLiv.getSelectionModel().getSelectedItem();
         Livraison liv = sl.GetById(selectedItem.getId());
         liv.setMethod(tfMethod.getText());
-        liv.setCinLivreur(Integer.parseInt(tfCinLivreur.getText()));
+        liv.setCinLivreur((tfCinLivreur.getValue()));
         liv.setIdClient(Integer.parseInt(tfIdClient.getText()));
          liv.setIdProd(Integer.parseInt(tfIdProd.getText()));
           liv.setAdresseclient(tfAdresse.getText());

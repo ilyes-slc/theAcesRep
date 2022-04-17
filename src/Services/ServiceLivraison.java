@@ -106,5 +106,12 @@ Connection connection;
       public Livraison GetById(int id) {
         return recuperer().stream().filter(e -> e.getId()== id).findFirst().get();
     }
-    
+    public List<Integer> getCinL()
+    {List<Livreur> l=new ArrayList();
+    List<Integer>  cin= new ArrayList<>();
+    ServiceLivreur sl= new ServiceLivreur();
+    l=sl.recuperer();
+    for(int i=0;i<l.size();i++)
+    {cin.add(l.get(i).getCin());}
+   return cin; }
 }
