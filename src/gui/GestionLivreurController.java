@@ -38,8 +38,17 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import Services.ServiceLivreur;
 import Services.ServiceLivraison;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import javafx.scene.control.DatePicker;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -50,7 +59,7 @@ public class GestionLivreurController implements Initializable {
     ServiceLivreur sl = new ServiceLivreur();
       @FXML
     private Button retour;
-
+File file;
     @FXML
     private TableView<Livreur> tblLiv;
 
@@ -179,14 +188,21 @@ public class GestionLivreurController implements Initializable {
     }
     
     @FXML
-    private void AddP(ActionEvent event) {
+    private void AddP(ActionEvent event) throws FileNotFoundException, IOException {
 
     //  final int cin = servCat.getIdByCategoryName(combCat.getValue());
-        if (tfCin.getText().isEmpty()){
+        if (tfCin.getText().isEmpty() || tfNom.getText().isEmpty() || tfPrenom.getText().isEmpty() || tfTel.getText().isEmpty() || tfZone.getText().isEmpty() || tfimg.getText().isEmpty()){
         error.setText("Verifier les entrées s'il vous plait");}
        else
         {// FIXME: change the id user from 1 to the current logged in user.
-        sl.ajouter(new Livreur(Integer.parseInt(tfCin.getText()),tfNom.getText(), tfPrenom.getText(),java.sql.Date.valueOf(dateP.getValue()), tfZone.getText(),tfimg.getText(),tfTel.getText()));
+               FileInputStream fl = new FileInputStream(file);
+
+            byte[] data = new byte[(int) file.length()];
+            String fileName = file.getName();
+            String path = fileName;
+            fl.read(data);
+            fl.close();
+        sl.ajouter(new Livreur(Integer.parseInt(tfCin.getText()),tfNom.getText(), tfPrenom.getText(),java.sql.Date.valueOf(dateP.getValue()), tfZone.getText(),path,tfTel.getText()));
         tblLiv.setItems(FXCollections.observableArrayList(sl.recuperer()));
        Alert alert = new Alert(AlertType.INFORMATION);
 alert.setTitle("Product added");
@@ -208,7 +224,7 @@ alert.setContentText("Product added succesfuuly!");
     }
 
     @FXML
-    private void EdP(ActionEvent event) {
+    private void EdP(ActionEvent event) throws FileNotFoundException, IOException {
         //final int cin = servLiv.getIdByCategoryName(combCat.getValue());
 
         // FIXME: change the id user from 1 to the current logged in user.
@@ -218,10 +234,18 @@ alert.setContentText("Product added succesfuuly!");
         liv.setName(tfNom.getText());
         liv.setPrenom(tfPrenom.getText());
          liv.setDate_naissance(java.sql.Date.valueOf(dateP.getValue()));
-          liv.setImage(tfimg.getText());
+      
           liv.setZone(tfZone.getText());
           liv.setTel(tfTel.getText());
         
+            FileInputStream fl = new FileInputStream(file);
+
+            byte[] data = new byte[(int) file.length()];
+            String fileName = file.getName();
+            String path = fileName;
+            fl.read(data);
+            fl.close();
+                liv.setImage(path);
      
         sl.modifier(liv);
         tblLiv.setItems(FXCollections.observableArrayList(sl.recuperer()));
@@ -249,26 +273,64 @@ alert.setContentText("Product added succesfuuly!");
     
     
      @FXML
-    private void chooseImage(ActionEvent event) {
-        final FileChooser fileChooser = new FileChooser();
-        Node node = (Node) event.getSource();
-        Stage thisStage = (Stage) node.getScene().getWindow();
-        selectedImage = fileChooser.showOpenDialog(thisStage);
+    private File chooseImage(ActionEvent event) {
+//        final FileChooser fileChooser = new FileChooser();
+//        Node node = (Node) event.getSource();
+//        Stage thisStage = (Stage) node.getScene().getWindow();
+//        selectedImage = fileChooser.showOpenDialog(thisStage);
+//
+//        if (selectedImage != null) {
+//            String selectedImagePath = selectedImage.toURI().toString();
+//           Image image = new Image(selectedImage.toURI().toString());
+//            
+//            File outputFile = new File("C:\\Users\\hp\\Documents\\NetBeansProjects\\JavaApplication8\\src\\img");
+//
+//            BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+//            try {
+//                 ImageIO.write(bImage, "png", outputFile);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            System.out.println(outputFile);
+//        }
+ Path to1 = null;
+        String m = null;
+        String path = "C:\\Users\\hp\\Documents\\NetBeansProjects\\JavaApplication8\\src\\img";
+        JFileChooser chooser = new JFileChooser();
 
-        if (selectedImage != null) {
-            String selectedImagePath = selectedImage.toURI().toString();
-           Image image = new Image(selectedImage.toURI().toString());
-            
-            File outputFile = new File("C:\\Users\\bouss\\Desktop\\piDesk\\PidevDeskM");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & PNG Images", "jpg", "jpeg", "PNG");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            m = chooser.getSelectedFile().getAbsolutePath();
 
-            BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
-            try {
-                ImageIO.write(bImage, "png", outputFile);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            file = chooser.getSelectedFile();
+            String fileName = file.getName();
+
+            if (chooser.getSelectedFile() != null) {
+
+                try {
+                    Path from = Paths.get(chooser.getSelectedFile().toURI());
+                    to1 = Paths.get(path + "\\" + fileName);
+                    //           to2 = Paths.get("src\\"+path+"\\"+file.getName()+".png");
+
+                    CopyOption[] options = new CopyOption[]{
+                        StandardCopyOption.REPLACE_EXISTING,
+                        StandardCopyOption.COPY_ATTRIBUTES
+                    };
+                    Files.copy(from, to1, options);
+                    System.out.println("added");
+                    System.out.println(file);
+
+                } catch (IOException ex) {
+                    System.out.println();
+                }
             }
 
         }
+         System.out.println(file.getPath());
+        return file;
     }
 
     

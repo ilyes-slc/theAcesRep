@@ -51,15 +51,11 @@ Connection connection;
     public void modifier( Livraison t) {
         
     try {
-         String req = "UPDATE livraison set method = ?,cinLivreur = ?,idClient = ?,idProd = ?,adresseclient = ?, etat = ? WHERE id= ?";
+         String req = "UPDATE livraison set etat = ? WHERE id= ?";
         PreparedStatement ps = connection.prepareStatement(req);
-          ps.setString(1, t.getMethod());
-        ps.setInt(2, t.getCinLivreur());
-        ps.setInt(3, t.getIdClient());
-        ps.setInt(4, t.getIdProd());
-        ps.setString(5, t.getAdresseclient());
-        ps.setString(6, t.getEtat());
-        ps.setInt(7, t.getId());
+        
+        ps.setString(1, t.getEtat());
+        ps.setInt(2, t.getId());
         ps.executeUpdate();
     } catch (SQLException ex) {
         Logger.getLogger(ServiceLivraison.class.getName()).log(Level.SEVERE, null, ex);

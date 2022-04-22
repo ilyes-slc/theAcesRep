@@ -21,6 +21,11 @@ public class Livraison {
     public Livraison() {
     }
 
+    public Livraison(String etat) {
+        this.etat = etat;
+    }
+    
+
     public Livraison(String method, int cinLivreur, int idClient, int idProd, String adresseclient, String etat) {
         this.method = method;
         this.cinLivreur = cinLivreur;

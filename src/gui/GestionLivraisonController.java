@@ -77,17 +77,12 @@ public class GestionLivraisonController implements Initializable {
 
 
 
-    @FXML
     private TextField tfMethod;
 
-      @FXML
     private ComboBox<Integer> tfCinLivreur;
 
-    @FXML
     private TextField tfIdClient;
 
-    @FXML
-    private Button AddP;
 
     @FXML
     private Button DelP;
@@ -98,10 +93,8 @@ public class GestionLivraisonController implements Initializable {
     @FXML
     private Label error;
 
-    @FXML
     private TextField tfIdProd;
 
-    @FXML
     private TextField tfAdresse;
 
     @FXML
@@ -116,12 +109,11 @@ public class GestionLivraisonController implements Initializable {
     File selectedImage;
 
     private int selectedLivId;
-    @FXML
-    private DatePicker dateP;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
          list = FXCollections.observableArrayList(sl.recuperer());
+         System.out.println("nabil");
         
         tbMethod.setCellValueFactory(new PropertyValueFactory<>("method"));
         tbCinLiv.setCellValueFactory(new PropertyValueFactory<>("cinLivreur"));
@@ -144,12 +136,7 @@ public class GestionLivraisonController implements Initializable {
 
                 if (!row.isEmpty()) {
                     final Livraison selectedItem = tblLiv.getSelectionModel().getSelectedItem();
-                    tfMethod.setText(selectedItem.getMethod());
                   
-                   tfIdClient.setText(""+selectedItem.getIdClient());
-                   
-                   tfIdProd.setText(""+selectedItem.getIdProd());
-                    tfAdresse.setText(selectedItem.getAdresseclient());
                      tfEtat.setText(selectedItem.getEtat());
                       
                     
@@ -171,8 +158,9 @@ public class GestionLivraisonController implements Initializable {
                 );
         
         System.out.println(cin);
-
-        tfCinLivreur.setItems(cin);
+ System.out.println("test");
+      
+        System.out.println("test");
     }
     
     @FXML
@@ -186,23 +174,7 @@ public class GestionLivraisonController implements Initializable {
    
     }
     
-    @FXML
-    private void AddP(ActionEvent event) {
-
-    //  final int cin = servCat.getIdByCategoryName(combCat.getValue());
-        if (tfMethod.getText().isEmpty()){
-        error.setText("Verifier les entrées s'il vous plait");}
-       else
-        {// FIXME: change the id user from 1 to the current logged in user.
-        sl.ajouter(new Livraison(tfMethod.getText(),(tfCinLivreur.getValue()), Integer.parseInt(tfIdClient.getText()),Integer.parseInt(tfIdProd.getText()),tfAdresse.getText(),tfEtat.getText()));
-        tblLiv.setItems(FXCollections.observableArrayList(sl.recuperer()));
-       Alert alert = new Alert(AlertType.INFORMATION);
-alert.setTitle("Livraison added");
-alert.setContentText("Livraison added succesfuuly!");
-        tblLiv.refresh();
-}
-
-    }
+   
 
     @FXML
     private void DelP(ActionEvent event) {
@@ -222,11 +194,7 @@ alert.setContentText("Livraison added succesfuuly!");
         // FIXME: change the id user from 1 to the current logged in user.
         final Livraison selectedItem = tblLiv.getSelectionModel().getSelectedItem();
         Livraison liv = sl.GetById(selectedItem.getId());
-        liv.setMethod(tfMethod.getText());
-        liv.setCinLivreur((tfCinLivreur.getValue()));
-        liv.setIdClient(Integer.parseInt(tfIdClient.getText()));
-         liv.setIdProd(Integer.parseInt(tfIdProd.getText()));
-          liv.setAdresseclient(tfAdresse.getText());
+       
           liv.setEtat(tfEtat.getText());
         
         
@@ -238,46 +206,10 @@ alert.setContentText("Livraison added succesfuuly!");
         
     }
 
-    @FXML
-    private void AddC(ActionEvent event) {
-
-        try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Promo.fxml"));
-
-            Parent root = loader.load();
-            retour.getScene().setRoot(root);
-
-           
-
-        } catch (IOException ex) {
-            
-        }
-    }
+   
     
     
-     @FXML
-    private void chooseImage(ActionEvent event) {
-        final FileChooser fileChooser = new FileChooser();
-        Node node = (Node) event.getSource();
-        Stage thisStage = (Stage) node.getScene().getWindow();
-        selectedImage = fileChooser.showOpenDialog(thisStage);
-
-        if (selectedImage != null) {
-            String selectedImagePath = selectedImage.toURI().toString();
-           Image image = new Image(selectedImage.toURI().toString());
-            
-            File outputFile = new File("C:\\Users\\bouss\\Desktop\\piDesk\\PidevDeskM");
-
-            BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
-            try {
-                ImageIO.write(bImage, "png", outputFile);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-        }
-    }
+ 
 
     
     

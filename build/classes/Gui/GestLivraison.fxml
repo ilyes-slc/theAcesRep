@@ -2,7 +2,6 @@
 
 <?import com.gluonhq.charm.glisten.control.AppBar?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -53,9 +52,6 @@
             <Font name="Arial Bold" size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="tfMethod" layoutX="14.0" layoutY="187.0" promptText="method" style="-fx-background-color: #7393B3;" styleClass="add-btn" stylesheets="@style.css" />
-      <TextField fx:id="tfIdClient" layoutX="12.0" layoutY="254.0" promptText="idClient" style="-fx-background-color: #7393B3;" styleClass="add-btn" stylesheets="@style.css" />
-      <Button fx:id="AddP" layoutX="33.0" layoutY="441.0" mnemonicParsing="false" onAction="#AddP" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #1E17A4; -fx-background-radius: 30;" text="Ajouter Livraison" textFill="WHITE" />
       <Button fx:id="DelP" layoutX="33.0" layoutY="493.0" mnemonicParsing="false" onAction="#DelP" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #1E17A4; -fx-background-radius: 30;" text="Supprimer Livraison" textFill="WHITE" />
       <Button fx:id="EdP" layoutX="33.0" layoutY="546.0" mnemonicParsing="false" onAction="#EdP" prefHeight="40.0" prefWidth="187.0" style="-fx-background-color: #1E17A4; -fx-background-radius: 30;" text="Modifier" textFill="WHITE" />
       <Label fx:id="error" layoutX="226.0" layoutY="161.0" prefHeight="198.0" prefWidth="122.0" textFill="RED" wrapText="true">
@@ -63,9 +59,6 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="tfIdProd" layoutX="12.0" layoutY="293.0" promptText="IdProd" style="-fx-background-color: #7393B3;" styleClass="add-btn" stylesheets="@style.css" />
-      <TextField fx:id="tfAdresse" layoutX="12.0" layoutY="335.0" promptText="adresseClient" style="-fx-background-color: #7393B3;" styleClass="add-btn" stylesheets="@style.css" />
       <TextField fx:id="tfEtat" layoutX="12.0" layoutY="370.0" promptText="etar" style="-fx-background-color: #7393B3;" styleClass="add-btn" stylesheets="@style.css" />
-      <ComboBox fx:id="tfCinLivreur" layoutX="13.0" layoutY="220.0" prefWidth="150.0" style="-fx-background-color: #7393B3; -fx-background-color: #7393B3;" styleClass="comboBox" stylesheets="@style.css" />
    </children>
 </AnchorPane>
